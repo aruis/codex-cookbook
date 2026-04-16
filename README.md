@@ -24,7 +24,7 @@
 
 ## Slides
 
-仓库内附带一份基于 reveal.js 的演示文稿，入口文件是 [slides/index.html](./slides/index.html)。
+仓库内附带一份基于 reveal.js 的演示文稿，入口文件是 [docs/index.html](./docs/index.html)。
 
 直接用浏览器打开即可；如果你想本地起一个静态服务，也可以在仓库根目录执行：
 
@@ -32,7 +32,7 @@
 python3 -m http.server 8000
 ```
 
-然后访问 `http://localhost:8000/slides/index.html`。
+然后访问 `http://localhost:8000/docs/index.html`。
 
 ## License
 
