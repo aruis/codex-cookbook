@@ -1,0 +1,255 @@
+:root {
+  --bg: #08121d;
+  --bg-soft: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #f5f1e8;
+  --muted: #d0d7df;
+  --accent: #ff8e3c;
+  --accent-soft: rgba(255, 142, 60, 0.16);
+  --accent-2: #8ad0ff;
+  --warn: #ffb45d;
+}
+
+.reveal {
+  background:
+    radial-gradient(circle at top left, rgba(138, 208, 255, 0.12), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 142, 60, 0.14), transparent 24%),
+    linear-gradient(180deg, #08121d 0%, #101923 100%);
+  color: var(--text);
+  font-family: "Avenir Next", "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal section {
+  padding: 0.3em 0.2em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal strong {
+  font-family: "Helvetica Neue", "PingFang SC", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+.reveal h1 {
+  font-size: 2.3em;
+  line-height: 0.96;
+  margin: 0.18em 0 0.28em;
+}
+
+.reveal h2 {
+  font-size: 1.58em;
+  line-height: 1.02;
+  margin: 0.2em 0 0.35em;
+}
+
+.reveal p,
+.reveal li {
+  font-size: 0.68em;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.5em;
+  color: var(--accent-2);
+  font-size: 0.32em;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 11.5em;
+  font-size: 0.72em;
+}
+
+.hero-grid,
+.split-grid,
+.matrix,
+.timeline {
+  display: grid;
+  gap: 0.6em;
+}
+
+.hero-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0.8em;
+}
+
+.split-grid {
+  grid-template-columns: 1.3fr 0.9fr;
+  align-items: start;
+}
+
+.matrix {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.matrix.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hero-block,
+.mini-card,
+.callout,
+.step,
+.quote-line,
+.code-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(10px);
+}
+
+.hero-block,
+.mini-card,
+.callout,
+.step {
+  border-radius: 0.28em;
+  padding: 0.45em 0.5em;
+}
+
+.hero-block strong,
+.mini-card strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.5em;
+  margin: 0.2em 0 0.14em;
+}
+
+.hero-block p,
+.mini-card p,
+.callout p,
+.step p {
+  margin: 0;
+}
+
+.kicker {
+  color: var(--accent);
+  font-size: 0.27em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.callout {
+  padding: 0.55em;
+}
+
+.callout.accent {
+  background: linear-gradient(180deg, rgba(255, 142, 60, 0.18), rgba(255, 255, 255, 0.03));
+}
+
+.big-list {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.big-list li {
+  margin-bottom: 0.5em;
+  color: var(--text);
+}
+
+.bullet-list {
+  padding-left: 1.15em;
+  margin: 0;
+}
+
+.bullet-list li {
+  margin-bottom: 0.48em;
+}
+
+.code-card {
+  border-radius: 0.34em;
+  padding: 0.28em 0.36em;
+}
+
+.code-card.compact {
+  height: 100%;
+}
+
+.reveal pre {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+  font-size: 0.43em;
+  line-height: 1.55;
+}
+
+.reveal pre code {
+  max-height: none;
+  padding: 0.25em !important;
+  color: #f4efe7;
+  background: transparent !important;
+}
+
+.stack {
+  display: grid;
+  gap: 0.45em;
+}
+
+.stack.tight {
+  gap: 0.3em;
+}
+
+.quote-line {
+  border-radius: 999px;
+  padding: 0.3em 0.55em;
+  font-size: 0.56em;
+  color: var(--text);
+}
+
+.timeline {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.step {
+  position: relative;
+  min-height: 2.3em;
+  padding-left: 0.9em;
+}
+
+.step span,
+.mini-card span {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.34em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.footnote {
+  margin-top: 0.55em;
+  font-size: 0.44em;
+  color: rgba(245, 241, 232, 0.72);
+}
+
+.warn {
+  background: linear-gradient(180deg, rgba(255, 180, 93, 0.14), rgba(255, 255, 255, 0.03));
+}
+
+.hero,
+.final {
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .matrix,
+  .matrix.two-col,
+  .hero-grid,
+  .split-grid,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .reveal h1 {
+    font-size: 1.75em;
+  }
+
+  .reveal h2 {
+    font-size: 1.24em;
+  }
+}

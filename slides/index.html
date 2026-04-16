@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codex Cookbook Slides</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="hero" data-background-gradient="linear-gradient(135deg, #08121d 0%, #0d2740 48%, #f76b15 130%)">
+          <div class="eyebrow">Codex Cookbook</div>
+          <h1>让团队成员能快速抄走<br />稳定复用</h1>
+          <p class="lead">
+            不是堆提示词，而是把常见协作动作收成一套能直接发给 Codex 的任务卡。
+          </p>
+          <div class="hero-grid">
+            <div class="hero-block">
+              <span class="kicker">核心目标</span>
+              <strong>少试错</strong>
+              <p>把目标、边界、输出、验证一次说清。</p>
+            </div>
+            <div class="hero-block">
+              <span class="kicker">适用场景</span>
+              <strong>日常开发</strong>
+              <p>诊断、实现、复盘、复查、项目收敛。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <div class="eyebrow">01</div>
+            <h2>先记住 3 件事</h2>
+            <div class="split-grid">
+              <div>
+                <ol class="big-list">
+                  <li>不要只提目标，还要说明工作方式、范围和输出格式。</li>
+                  <li>任务明确就直接推进，边界不清再先收敛。</li>
+                  <li>不要只让它“做”，还要让它“证明做对”。</li>
+                </ol>
+              </div>
+              <div class="callout">
+                <span class="kicker">一句话总结</span>
+                <p>Codex 更像执行搭档，不是读心机器。</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="eyebrow">01</div>
+            <h2>一个统一骨架</h2>
+            <div class="code-card">
+              <pre><code data-trim>
+目标：解决【具体问题】；如果适合，尽量逼近【最终可用状态】。
+模式：【直接推进 / 先诊断 / 先复现 / 先收敛计划】。
+约束：这次只解决【范围 A】，不扩展到【范围 B】；优先【长期可维护 / 短期可交付】。
+输出：先给【判断 / 方案 / 完整计划】，再【落地 / 继续问关键问题】。
+验证：通过【测试 / 最小验证步骤 / 验收标准】证明结果有效。
+              </code></pre>
+            </div>
+            <p class="footnote">这些模板默认都是写给 Codex 的，可以直接复制后替换占位内容。</p>
+          </section>
+
+          <section>
+            <div class="eyebrow">01</div>
+            <h2>3 句高频补充</h2>
+            <div class="stack">
+              <div class="quote-line">这次只解决当前核心问题，不顺手扩展、不做无关重构。</div>
+              <div class="quote-line">如果有需要我确认的问题，请只提最关键的 1 到 3 个。</div>
+              <div class="quote-line">先列出关键假设和缺失信息；能自行拍板的直接继续。</div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <div class="eyebrow">02</div>
+          <h2>八个高频场景</h2>
+          <div class="matrix">
+            <div class="mini-card">
+              <span>01</span>
+              <strong>先诊断</strong>
+              <p>先找问题，再决定怎么改。</p>
+            </div>
+            <div class="mini-card">
+              <span>02</span>
+              <strong>直接推进</strong>
+              <p>任务明确时别机械讨论。</p>
+            </div>
+            <div class="mini-card">
+              <span>03</span>
+              <strong>只问关键问题</strong>
+              <p>把低价值来回确认降到最低。</p>
+            </div>
+            <div class="mini-card">
+              <span>04</span>
+              <strong>长期可维护</strong>
+              <p>把短期解和长期解讲清楚。</p>
+            </div>
+            <div class="mini-card">
+              <span>05</span>
+              <strong>失败先复盘</strong>
+              <p>先判断错在目标、路径还是执行。</p>
+            </div>
+            <div class="mini-card">
+              <span>06</span>
+              <strong>补验证闭环</strong>
+              <p>不要停在“代码已改”。</p>
+            </div>
+            <div class="mini-card">
+              <span>07</span>
+              <strong>先复现再修</strong>
+              <p>修 bug 不靠盲改。</p>
+            </div>
+            <div class="mini-card">
+              <span>08</span>
+              <strong>先收敛计划</strong>
+              <p>复杂任务先查漏补缺。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <section>
+            <div class="eyebrow">03</div>
+            <h2>直接开发型</h2>
+            <div class="code-card">
+              <pre><code data-trim>
+目标：解决【具体问题】，并尽量逼近【最终可用方案】。
+模式：如果任务已经明确，就直接推进。
+约束：先读上下文再动手；非关键问题不要频繁停下来；
+      这次只解决【当前核心问题】，不顺手扩展到【无关范围】。
+输出：先给问题判断和推荐方案，再直接落地；
+      如果有必须我拍板的问题，按“问题、选项、利弊、推荐”来问我。
+验证：改完后补充【测试 / 最小验证闭环】。
+              </code></pre>
+            </div>
+          </section>
+
+          <section>
+            <div class="eyebrow">03</div>
+            <h2>Bug 修复型</h2>
+            <div class="split-grid">
+              <div class="code-card compact">
+                <pre><code data-trim>
+目标：修复【某个 bug】，并避免盲改。
+模式：一般不需要先做计划收敛。
+约束：优先先复现，再修复。
+输出：说明 bug 根因、如何复现、代码如何修复。
+验证：确认问题先被稳定复现，再确认修复后通过。
+                </code></pre>
+              </div>
+              <div class="callout">
+                <span class="kicker">关键差别</span>
+                <p>不是让它直接改，而是先把问题钉死，再让修复有依据。</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="eyebrow">03</div>
+            <h2>独立复查型</h2>
+            <div class="split-grid">
+              <div>
+                <ul class="bullet-list">
+                  <li>适合主流程基本完成后使用。</li>
+                  <li>更适合复查、补充视角和并行审视。</li>
+                  <li>不适合承接必须立刻解决的主线任务。</li>
+                </ul>
+              </div>
+              <div class="callout accent">
+                <span class="kicker">复查维度</span>
+                <p>从【前端 / 架构 / 接口 / 文档】视角，检查【稳定性 / 可维护性 / 一致性】。</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <div class="eyebrow">04</div>
+            <h2>中型项目怎么用</h2>
+            <div class="timeline">
+              <div class="step">
+                <span>01</span>
+                <p>先对齐业务目标、场景边界和不做项。</p>
+              </div>
+              <div class="step">
+                <span>02</span>
+                <p>文档未定时，先做计划收敛，把关键共识定下来。</p>
+              </div>
+              <div class="step">
+                <span>03</span>
+                <p>文档基本定下来后，再用计划模式查漏补缺，整理出完整计划。</p>
+              </div>
+              <div class="step">
+                <span>04</span>
+                <p>进入执行阶段后，默认直接推进，不常驻计划模式。</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="eyebrow">04</div>
+            <h2>这一步最关键</h2>
+            <div class="code-card">
+              <pre><code data-trim>
+文档基本定下来后，先进入计划模式，
+帮我补扫一遍我可能没想到的问题和遗漏约束；
+然后基于当前共识，直接整理成可推进开发的完整执行计划。
+              </code></pre>
+            </div>
+            <p class="footnote">这不是“再讨论一轮”，而是“查漏补缺后直接开工”。</p>
+          </section>
+        </section>
+
+        <section>
+          <div class="eyebrow">05</div>
+          <h2>常见反模式</h2>
+          <div class="matrix two-col">
+            <div class="mini-card warn">
+              <strong>只写 review</strong>
+              <p>太泛。要写清楚是代码、UI、架构还是文档 review。</p>
+            </div>
+            <div class="mini-card warn">
+              <strong>只写 test</strong>
+              <p>要区分写测试、跑测试和人工验证。</p>
+            </div>
+            <div class="mini-card warn">
+              <strong>一直问还有什么要确认</strong>
+              <p>会把低价值问题重新抛回来。</p>
+            </div>
+            <div class="mini-card warn">
+              <strong>不写范围</strong>
+              <p>容易顺手扩展，最后越改越多。</p>
+            </div>
+            <div class="mini-card warn">
+              <strong>机械先做计划</strong>
+              <p>简单任务也被拉成长链路。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="final" data-background-gradient="linear-gradient(160deg, #111318 0%, #151a22 60%, #c4510a 140%)">
+          <div class="eyebrow">06</div>
+          <h2>最后只记这 5 句</h2>
+          <div class="stack tight">
+            <div class="quote-line">目标：要解决什么问题。</div>
+            <div class="quote-line">模式：直接推进，还是先诊断、先复现、先收敛。</div>
+            <div class="quote-line">约束：范围到哪里为止，优先长期还是短期。</div>
+            <div class="quote-line">输出：要方案、代码、文档、测试，还是完整执行计划。</div>
+            <div class="quote-line">验证：怎么证明这次结果是对的。</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: "c/t",
+        transition: "fade",
+        backgroundTransition: "fade",
+        controlsLayout: "edges",
+        center: true,
+        plugins: [RevealHighlight]
+      });
+    </script>
+  </body>
+</html>
