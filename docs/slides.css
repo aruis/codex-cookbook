@@ -188,6 +188,10 @@ body::after {
   box-shadow: var(--shadow);
 }
 
+body[data-cover="true"] .stage-hud {
+  display: none;
+}
+
 .stage-kicker {
   font-size: 11px;
   letter-spacing: 0.18em;
@@ -250,29 +254,82 @@ body::after {
 
 .cover-grid {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.74fr);
-  align-items: end;
-  gap: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 78vh;
-  padding-top: 0.35em;
+  padding-top: 0;
 }
 
 .cover-copy {
   display: grid;
+  justify-items: center;
   gap: 0.34em;
-  max-width: 20em;
-}
-
-.cover-copy h1 {
-  text-wrap: balance;
+  width: min(100%, 24em);
+  text-align: center;
 }
 
 .cover-aside {
+  display: none;
+}
+
+.seal-mark {
+  position: relative;
   display: grid;
-  gap: 0.42em;
-  align-self: center;
-  justify-items: end;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(68vh, 68vw, 360px);
+  aspect-ratio: 1;
+  padding: clamp(30px, 7.5%, 42px);
+  border: 4px solid rgba(181, 129, 110, 0.32);
+  background:
+    radial-gradient(circle at 28% 26%, rgba(196, 136, 113, 0.08), transparent 34%),
+    radial-gradient(circle at 72% 74%, rgba(196, 136, 113, 0.06), transparent 38%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.22), rgba(255, 250, 244, 0.08));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 245, 238, 0.52),
+    0 18px 40px rgba(83, 50, 31, 0.06);
+}
+
+.seal-mark::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(181, 129, 110, 0.16);
+  pointer-events: none;
+}
+
+.seal-mark span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+  font-size: clamp(82px, 11vw, 118px);
+  line-height: 1;
+  color: rgba(176, 121, 101, 0.82);
+  text-shadow: 0 1px 0 rgba(255, 249, 243, 0.35);
+}
+
+.seal-mark span:nth-child(1),
+.seal-mark span:nth-child(3) {
+  transform: translateX(6%);
+}
+
+.seal-mark span:nth-child(2),
+.seal-mark span:nth-child(4) {
+  transform: translateX(-6%);
+}
+
+.cover-eyebrow {
+  margin-top: 0.34em;
+}
+
+.cover-copy h1 {
+  max-width: 10em;
+  text-wrap: balance;
+}
+
+.cover-subtitle {
+  max-width: 24em;
 }
 
 .cover-panel {
@@ -685,8 +742,13 @@ body::after {
 }
 
 body[data-cover="true"] .glyph-field::before {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+body[data-cover="true"] .glyph {
+  opacity: 0;
+  pointer-events: none;
 }
 
 body[data-cover="false"] .glyph {
@@ -841,5 +903,19 @@ body[data-cover="false"] .glyph:not(.is-active) {
     right: 2vw;
     bottom: -3vh;
     top: auto;
+  }
+
+  .seal-mark {
+    width: min(72vw, 320px);
+    padding: 24px;
+    border-width: 3px;
+  }
+
+  .seal-mark::before {
+    inset: 10px;
+  }
+
+  .seal-mark span {
+    font-size: clamp(70px, 16vw, 96px);
   }
 }
