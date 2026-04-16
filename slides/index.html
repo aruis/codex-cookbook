@@ -1,281 +1,407 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Codex Cookbook Slides</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
-    />
-    <link rel="stylesheet" href="./theme.css" />
-  </head>
-  <body>
-    <div class="reveal">
-      <div class="slides">
-        <section class="hero" data-background-gradient="linear-gradient(135deg, #08121d 0%, #0d2740 48%, #f76b15 130%)">
-          <div class="eyebrow">Codex Cookbook</div>
-          <h1>让团队成员能快速抄走<br />稳定复用</h1>
-          <p class="lead">
-            不是堆提示词，而是把常见协作动作收成一套能直接发给 Codex 的任务卡。
-          </p>
-          <div class="hero-grid">
-            <div class="hero-block">
-              <span class="kicker">核心目标</span>
-              <strong>少试错</strong>
-              <p>把目标、边界、输出、验证一次说清。</p>
-            </div>
-            <div class="hero-block">
-              <span class="kicker">适用场景</span>
-              <strong>日常开发</strong>
-              <p>诊断、实现、复盘、复查、项目收敛。</p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <section>
-            <div class="eyebrow">01</div>
-            <h2>先记住 3 件事</h2>
-            <div class="split-grid">
-              <div>
-                <ol class="big-list">
-                  <li>不要只提目标，还要说明工作方式、范围和输出格式。</li>
-                  <li>任务明确就直接推进，边界不清再先收敛。</li>
-                  <li>不要只让它“做”，还要让它“证明做对”。</li>
-                </ol>
-              </div>
-              <div class="callout">
-                <span class="kicker">一句话总结</span>
-                <p>Codex 更像执行搭档，不是读心机器。</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div class="eyebrow">01</div>
-            <h2>一个统一骨架</h2>
-            <div class="code-card">
-              <pre><code data-trim>
-目标：解决【具体问题】；如果适合，尽量逼近【最终可用状态】。
-模式：【直接推进 / 先诊断 / 先复现 / 先收敛计划】。
-约束：这次只解决【范围 A】，不扩展到【范围 B】；优先【长期可维护 / 短期可交付】。
-输出：先给【判断 / 方案 / 完整计划】，再【落地 / 继续问关键问题】。
-验证：通过【测试 / 最小验证步骤 / 验收标准】证明结果有效。
-              </code></pre>
-            </div>
-            <p class="footnote">这些模板默认都是写给 Codex 的，可以直接复制后替换占位内容。</p>
-          </section>
-
-          <section>
-            <div class="eyebrow">01</div>
-            <h2>3 句高频补充</h2>
-            <div class="stack">
-              <div class="quote-line">这次只解决当前核心问题，不顺手扩展、不做无关重构。</div>
-              <div class="quote-line">如果有需要我确认的问题，请只提最关键的 1 到 3 个。</div>
-              <div class="quote-line">先列出关键假设和缺失信息；能自行拍板的直接继续。</div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <div class="eyebrow">02</div>
-          <h2>八个高频场景</h2>
-          <div class="matrix">
-            <div class="mini-card">
-              <span>01</span>
-              <strong>先诊断</strong>
-              <p>先找问题，再决定怎么改。</p>
-            </div>
-            <div class="mini-card">
-              <span>02</span>
-              <strong>直接推进</strong>
-              <p>任务明确时别机械讨论。</p>
-            </div>
-            <div class="mini-card">
-              <span>03</span>
-              <strong>只问关键问题</strong>
-              <p>把低价值来回确认降到最低。</p>
-            </div>
-            <div class="mini-card">
-              <span>04</span>
-              <strong>长期可维护</strong>
-              <p>把短期解和长期解讲清楚。</p>
-            </div>
-            <div class="mini-card">
-              <span>05</span>
-              <strong>失败先复盘</strong>
-              <p>先判断错在目标、路径还是执行。</p>
-            </div>
-            <div class="mini-card">
-              <span>06</span>
-              <strong>补验证闭环</strong>
-              <p>不要停在“代码已改”。</p>
-            </div>
-            <div class="mini-card">
-              <span>07</span>
-              <strong>先复现再修</strong>
-              <p>修 bug 不靠盲改。</p>
-            </div>
-            <div class="mini-card">
-              <span>08</span>
-              <strong>先收敛计划</strong>
-              <p>复杂任务先查漏补缺。</p>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <section>
-            <div class="eyebrow">03</div>
-            <h2>直接开发型</h2>
-            <div class="code-card">
-              <pre><code data-trim>
-目标：解决【具体问题】，并尽量逼近【最终可用方案】。
-模式：如果任务已经明确，就直接推进。
-约束：先读上下文再动手；非关键问题不要频繁停下来；
-      这次只解决【当前核心问题】，不顺手扩展到【无关范围】。
-输出：先给问题判断和推荐方案，再直接落地；
-      如果有必须我拍板的问题，按“问题、选项、利弊、推荐”来问我。
-验证：改完后补充【测试 / 最小验证闭环】。
-              </code></pre>
-            </div>
-          </section>
-
-          <section>
-            <div class="eyebrow">03</div>
-            <h2>Bug 修复型</h2>
-            <div class="split-grid">
-              <div class="code-card compact">
-                <pre><code data-trim>
-目标：修复【某个 bug】，并避免盲改。
-模式：一般不需要先做计划收敛。
-约束：优先先复现，再修复。
-输出：说明 bug 根因、如何复现、代码如何修复。
-验证：确认问题先被稳定复现，再确认修复后通过。
-                </code></pre>
-              </div>
-              <div class="callout">
-                <span class="kicker">关键差别</span>
-                <p>不是让它直接改，而是先把问题钉死，再让修复有依据。</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div class="eyebrow">03</div>
-            <h2>独立复查型</h2>
-            <div class="split-grid">
-              <div>
-                <ul class="bullet-list">
-                  <li>适合主流程基本完成后使用。</li>
-                  <li>更适合复查、补充视角和并行审视。</li>
-                  <li>不适合承接必须立刻解决的主线任务。</li>
-                </ul>
-              </div>
-              <div class="callout accent">
-                <span class="kicker">复查维度</span>
-                <p>从【前端 / 架构 / 接口 / 文档】视角，检查【稳定性 / 可维护性 / 一致性】。</p>
-              </div>
-            </div>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <div class="eyebrow">04</div>
-            <h2>中型项目怎么用</h2>
-            <div class="timeline">
-              <div class="step">
-                <span>01</span>
-                <p>先对齐业务目标、场景边界和不做项。</p>
-              </div>
-              <div class="step">
-                <span>02</span>
-                <p>文档未定时，先做计划收敛，把关键共识定下来。</p>
-              </div>
-              <div class="step">
-                <span>03</span>
-                <p>文档基本定下来后，再用计划模式查漏补缺，整理出完整计划。</p>
-              </div>
-              <div class="step">
-                <span>04</span>
-                <p>进入执行阶段后，默认直接推进，不常驻计划模式。</p>
-              </div>
-            </div>
-          </section>
-
-          <section>
-            <div class="eyebrow">04</div>
-            <h2>这一步最关键</h2>
-            <div class="code-card">
-              <pre><code data-trim>
-文档基本定下来后，先进入计划模式，
-帮我补扫一遍我可能没想到的问题和遗漏约束；
-然后基于当前共识，直接整理成可推进开发的完整执行计划。
-              </code></pre>
-            </div>
-            <p class="footnote">这不是“再讨论一轮”，而是“查漏补缺后直接开工”。</p>
-          </section>
-        </section>
-
-        <section>
-          <div class="eyebrow">05</div>
-          <h2>常见反模式</h2>
-          <div class="matrix two-col">
-            <div class="mini-card warn">
-              <strong>只写 review</strong>
-              <p>太泛。要写清楚是代码、UI、架构还是文档 review。</p>
-            </div>
-            <div class="mini-card warn">
-              <strong>只写 test</strong>
-              <p>要区分写测试、跑测试和人工验证。</p>
-            </div>
-            <div class="mini-card warn">
-              <strong>一直问还有什么要确认</strong>
-              <p>会把低价值问题重新抛回来。</p>
-            </div>
-            <div class="mini-card warn">
-              <strong>不写范围</strong>
-              <p>容易顺手扩展，最后越改越多。</p>
-            </div>
-            <div class="mini-card warn">
-              <strong>机械先做计划</strong>
-              <p>简单任务也被拉成长链路。</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="final" data-background-gradient="linear-gradient(160deg, #111318 0%, #151a22 60%, #c4510a 140%)">
-          <div class="eyebrow">06</div>
-          <h2>最后只记这 5 句</h2>
-          <div class="stack tight">
-            <div class="quote-line">目标：要解决什么问题。</div>
-            <div class="quote-line">模式：直接推进，还是先诊断、先复现、先收敛。</div>
-            <div class="quote-line">约束：范围到哪里为止，优先长期还是短期。</div>
-            <div class="quote-line">输出：要方案、代码、文档、测试，还是完整执行计划。</div>
-            <div class="quote-line">验证：怎么证明这次结果是对的。</div>
-          </div>
-        </section>
-      </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Cookbook · 道法术器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="./subagent-alt.css">
+</head>
+<body>
+  <div class="stage-hud" aria-live="polite">
+    <div class="stage-kicker">Codex Cookbook</div>
+    <div class="stage-meta">
+      <strong id="stageLabel">道</strong>
+      <span id="stageTitle">开场</span>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
-    <script>
-      Reveal.initialize({
-        hash: true,
-        slideNumber: "c/t",
-        transition: "fade",
-        backgroundTransition: "fade",
-        controlsLayout: "edges",
-        center: true,
-        plugins: [RevealHighlight]
+  <div class="glyph-field" aria-label="章节背景导航">
+    <button type="button" class="glyph glyph-dao" data-stage="dao" aria-label="跳转到道">道</button>
+    <button type="button" class="glyph glyph-fa" data-stage="fa" aria-label="跳转到法">法</button>
+    <button type="button" class="glyph glyph-shu" data-stage="shu" aria-label="跳转到术">术</button>
+    <button type="button" class="glyph glyph-qi" data-stage="qi" aria-label="跳转到器">器</button>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+      <section class="slide cover" data-stage="dao" data-title="开场">
+        <div class="cover-grid">
+          <div class="cover-copy">
+            <p class="eyebrow">Codex Cookbook</p>
+            <h1>与 Codex 协作的<br>结构化实战手册</h1>
+            <p class="subtitle">一份面向团队与个人开发者的 Codex 实战手册，聚焦高频场景、可复制模板和稳定复用的协作方法。</p>
+          </div>
+          <aside class="cover-aside">
+          </aside>
+        </div>
+      </section>
+
+      <section class="slide flow-slide" data-stage="dao" data-title="阅读顺序">
+        <p class="eyebrow">阅读顺序</p>
+        <h2>先建立判断，再进入协作与复用</h2>
+        <div class="flow-track">
+          <article class="flow-card">
+            <span>道</span>
+            <h3>底层判断</h3>
+            <p>建立和 Codex 协作时最重要的底层判断。</p>
+          </article>
+          <article class="flow-card">
+            <span>法</span>
+            <h3>协作组织</h3>
+            <p>理解任务该如何组织，而不是直接堆提示词。</p>
+          </article>
+          <article class="flow-card">
+            <span>术</span>
+            <h3>局面打法</h3>
+            <p>进入具体局面后，按高频场景切换打法。</p>
+          </article>
+          <article class="flow-card">
+            <span>器</span>
+            <h3>直接复用</h3>
+            <p>需要马上复制时，直接拿模板、反模式和补充句。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide chapter-slide" data-stage="dao" data-title="道">
+        <div class="chapter-mark">道</div>
+        <div class="chapter-body">
+          <p class="eyebrow">Dao</p>
+          <h2>先讲底层判断</h2>
+          <p class="chapter-lead">这一章只回答一件事：为什么有些协作会失焦、失真、失稳。</p>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="dao" data-title="三个判断">
+        <p class="eyebrow">道</p>
+        <h2>三个底层判断，决定结果上限</h2>
+        <div class="pillar-grid">
+          <article class="pillar">
+            <span class="pillar-no">01</span>
+            <h3>以边界换聚焦</h3>
+            <p>不给边界，Codex 就只能平均用力；明确不做什么、什么可妥协、什么不能妥协，结果才会真正聚焦。</p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-no">02</span>
+            <h3>以信息换准确</h3>
+            <p>你提供的信息密度，决定结果和预期的贴合度；目标、背景、约束和细节说得越清楚，返工越少。</p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-no">03</span>
+            <h3>以文档和验证换稳定</h3>
+            <p>上下文会衰减，口头共识会丢失；目标、方案、进度要尽早落文档并持续更新，结果还要靠测试或验证闭环来证明。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide chapter-slide" data-stage="fa" data-title="法">
+        <div class="chapter-mark">法</div>
+        <div class="chapter-body">
+          <p class="eyebrow">Fa</p>
+          <h2>再讲协作如何组织</h2>
+          <p class="chapter-lead">“法”解决协作组织。目标、边界、阶段、验证，要被组织成一条可执行的链。</p>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="fa" data-title="六条原则">
+        <p class="eyebrow">法</p>
+        <h2>常见任务里，先按这 6 条组织配合</h2>
+        <div class="principle-board">
+          <article><strong>01</strong><p>先收敛，再展开。目标、边界、路径不清时，先收敛问题。</p></article>
+          <article><strong>02</strong><p>明确任务的时间尺度。长期建设、阶段性过渡、短期止血，是三种不同任务。</p></article>
+          <article><strong>03</strong><p>根据阶段定模式。方案期适合讨论和计划，问题模糊时适合先诊断。</p></article>
+          <article><strong>04</strong><p>用结构化表达降低偏差，让目标、约束、输出和验证都清楚可读。</p></article>
+          <article><strong>05</strong><p>用文档沉淀阶段共识。多轮协作不要只靠会话记忆。</p></article>
+          <article><strong>06</strong><p>用验证闭环约束结果。不要只停在“已经改了”。</p></article>
+        </div>
+      </section>
+
+      <section class="slide accent-slide" data-stage="fa" data-title="最小闭环">
+        <p class="eyebrow">法</p>
+        <h2>单次任务里，这 6 条通常会压缩成一个最小闭环</h2>
+        <div class="loop-row">
+          <span>目标</span>
+          <span>模式</span>
+          <span>约束</span>
+          <span>输出</span>
+          <span>验证</span>
+        </div>
+        <p class="quote">它的价值不在格式本身，而在于提前说清偏差最容易出现的地方。</p>
+      </section>
+
+      <section class="slide" data-stage="fa" data-title="推荐骨架">
+        <p class="eyebrow">法</p>
+        <h2>推荐骨架</h2>
+        <div class="template-grid wide single">
+          <div class="template-block">
+            <p><strong>目标：</strong>解决【具体问题】；如果适合，尽量逼近【最终可用状态】。</p>
+            <p><strong>模式：</strong>【直接推进 / 先诊断 / 先复现 / 先收敛计划】。</p>
+            <p><strong>约束：</strong>这次只解决【范围 A】，不扩展到【范围 B】；这次任务属于【长期建设 / 阶段性过渡 / 短期止血】，优先【长期可维护 / 短期可交付】。</p>
+            <p><strong>输出：</strong>先给【判断 / 方案 / 完整计划】，再【落地 / 继续问关键问题】。</p>
+            <p><strong>验证：</strong>通过【测试 / 最小验证步骤 / 验收标准】证明结果有效。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide chapter-slide" data-stage="shu" data-title="术">
+        <div class="chapter-mark">术</div>
+        <div class="chapter-body">
+          <p class="eyebrow">Shu</p>
+          <h2>进入具体局面后，再选择打法</h2>
+          <p class="chapter-lead">下面不是零散技巧，而是几类高频局面下的常用打法。</p>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="shu" data-title="11 类局面">
+        <p class="eyebrow">术</p>
+        <h2>先看全图：11 类高频局面</h2>
+        <div class="situation-grid">
+          <article><strong>01</strong><p>局面未明：先诊断，不急着改。</p></article>
+          <article><strong>02</strong><p>主线清晰：直接推进。</p></article>
+          <article><strong>03</strong><p>目标偏长期建设：优先长期可维护。</p></article>
+          <article><strong>04</strong><p>目标偏短期止血：优先恢复可用。</p></article>
+          <article><strong>05</strong><p>不需要兼容过渡：直接硬切。</p></article>
+          <article><strong>06</strong><p>连续失败后：先复盘，再继续。</p></article>
+          <article><strong>07</strong><p>临近收口：补验证闭环。</p></article>
+          <article><strong>08</strong><p>Bug 场景：先复现，再修复。</p></article>
+          <article><strong>09</strong><p>多轮协作：先落文档，再继续推进。</p></article>
+          <article><strong>10</strong><p>任务复杂：先收敛计划。</p></article>
+          <article><strong>11</strong><p>中型项目：按阶段推进。</p></article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="shu" data-title="清晰度与模式">
+        <p class="eyebrow">术 · 第一组</p>
+        <h2>先判断任务清晰度，再决定是诊断、计划还是直接推进</h2>
+        <div class="scenario-grid">
+          <article class="scenario-card">
+            <h3>1. 局面未明：先诊断，不急着改</h3>
+            <p><strong>适用：</strong>想先找问题，再决定是否开工；任务还比较模糊。</p>
+            <p><strong>模板：</strong>先不要急着改。先从【指定维度】系统指出当前存在的问题，并按优先级排序；如果需要，再补充你推荐的修正方向。</p>
+            <p><strong>误用边界：</strong>不限定“指定维度”，输出容易发散。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>2. 主线清晰：直接推进</h3>
+            <p><strong>适用：</strong>方向已经清楚，不想频繁来回确认，更关心结果。</p>
+            <p><strong>模板：</strong>你直接按逼近最终目标的思路推进，先读上下文再动手；非关键问题不要频繁停下来，只有你不能拍板的问题再集中问我。</p>
+            <p><strong>误用边界：</strong>边界不清时容易顺手扩散改动，所以最好同时写上范围约束。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>10. 任务复杂：先收敛计划</h3>
+            <p><strong>适用：</strong>目标不够清楚，需求里有多个分支或决策点。</p>
+            <p><strong>模板：</strong>先不要急着落代码。先把目标、约束、范围边界、关键分歧点、推荐路径和执行步骤梳理清楚；如果有需要我确认的地方，按优先级逐条拿出来。</p>
+            <p><strong>误用边界：</strong>任务已经很直接时，不要机械开启计划模式。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="shu" data-title="长期与短期取舍">
+        <p class="eyebrow">术 · 第二组</p>
+        <h2>时间尺度不同，打法就不同</h2>
+        <div class="scenario-grid">
+          <article class="scenario-card">
+            <h3>3. 目标偏长期建设：优先长期可维护</h3>
+            <p><strong>适用：</strong>这次改动后面还会继续演进，担心短期通过掩盖长期问题。</p>
+            <p><strong>模板：</strong>不要为了短期通过牺牲长期可维护性、健壮性和扩展性。优先选择中长期站得住的方案；如果必须做短期方案，请明确标注取舍和后续风险。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>4. 目标偏短期止血：优先恢复可用</h3>
+            <p><strong>适用：</strong>线上问题需要先恢复，当前目标是快速止损，而不是一次性彻底治理。</p>
+            <p><strong>模板：</strong>这次以短期止血为主，优先恢复可用和控制影响面，不追求一次性彻底治理；如果用了临时方案，请标注后续治理项。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>5. 不需要兼容过渡：直接硬切</h3>
+            <p><strong>适用：</strong>明确知道不需要兼容层、双写、灰度适配或过渡方案。</p>
+            <p><strong>模板：</strong>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。如果会破坏存量契约，请直接同步调整调用方和相关实现。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="shu" data-title="修复与收口">
+        <p class="eyebrow">术 · 第三组</p>
+        <h2>临近交付时，重点是复现、验证和避免盲改</h2>
+        <div class="scenario-grid two-col">
+          <article class="scenario-card">
+            <h3>7. 临近收口：补验证闭环</h3>
+            <p><strong>适用：</strong>不想只停留在“代码已改”，希望证明这次改动真的有效。</p>
+            <p><strong>模板：</strong>写出这次完成的验收标准，再补充必要测试或验证步骤，证明这次修改确实解决了问题，而不是靠硬压、绕过或碰巧通过。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>8. Bug 场景：先复现，再修复</h3>
+            <p><strong>适用：</strong>正在修 bug，希望先锁定问题，再改代码。</p>
+            <p><strong>模板：</strong>先不要直接改代码。优先补一个最小失败测试来稳定复现这个 bug；如果不适合写自动化测试，就先给出最小可行复现和验证步骤。确认问题被稳定复现后，再修改代码并检查没有引入误伤。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="shu" data-title="复盘与阶段推进">
+        <p class="eyebrow">术 · 第四组</p>
+        <h2>任务跨多轮或反复失败时，要切换到复盘与阶段推进</h2>
+        <div class="scenario-grid">
+          <article class="scenario-card">
+            <h3>6. 连续失败后：先复盘，再继续</h3>
+            <p><strong>模板：</strong>这件事已经反复失败多次。请先判断是目标错、路径错，还是执行细节错，并给出下一轮最值得尝试的方案，以及建议停掉哪些低收益动作。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>9. 多轮协作：先落文档，再继续推进</h3>
+            <p><strong>模板：</strong>这件事会跨多轮推进。请先把当前目标、关键约束、已达成结论、待决问题和下一步计划整理成文档或结构化记录；后续推进过程中持续更新，不要只依赖会话上下文。</p>
+          </article>
+          <article class="scenario-card">
+            <h3>11. 中型项目：按阶段推进</h3>
+            <p><strong>推荐流程：</strong>先对齐业务目标、场景边界和不做项；文档未定时先做计划收敛；执行阶段默认直接推进；只有在阶段切换、偏航或卡住时，再回到计划收敛；关键阶段结束后，再补一轮独立复查。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide chapter-slide" data-stage="qi" data-title="器">
+        <div class="chapter-mark">器</div>
+        <div class="chapter-body">
+          <p class="eyebrow">Qi</p>
+          <h2>最后才进入拿来即用</h2>
+          <p class="chapter-lead">这一章不再讲判断，而是直接给能复制的模板、反模式和补充句。</p>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="qi" data-title="四个推荐组合">
+        <p class="eyebrow">器</p>
+        <h2>四个推荐组合</h2>
+        <div class="recipe-grid">
+          <article class="recipe-card">
+            <h3>方案讨论型</h3>
+            <p><strong>目标：</strong>先收敛【某个方案 / 某个模块怎么做】，先不急着写代码。</p>
+            <p><strong>模式：</strong>必要时先做计划收敛。</p>
+            <p><strong>输出：</strong>按“问题、选项、利弊、推荐”格式整理，我来拍板。</p>
+          </article>
+          <article class="recipe-card">
+            <h3>直接开发型</h3>
+            <p><strong>目标：</strong>解决【具体问题】，并尽量逼近【最终可用方案】。</p>
+            <p><strong>约束：</strong>先读上下文再动手；非关键问题不要频繁停下来；只解决当前核心问题。</p>
+            <p><strong>验证：</strong>改完后补充【测试 / 最小验证闭环】。</p>
+          </article>
+          <article class="recipe-card">
+            <h3>Bug 修复型</h3>
+            <p><strong>目标：</strong>修复【某个 bug】，并避免盲改。</p>
+            <p><strong>约束：</strong>优先先复现，再修复；不要为了让测试通过而绕开真实问题。</p>
+            <p><strong>输出：</strong>说明 bug 根因、如何复现、代码如何修复。</p>
+          </article>
+          <article class="recipe-card">
+            <h3>独立复查型</h3>
+            <p><strong>目标：</strong>对当前结果做一轮独立复查，而不是重复主流程。</p>
+            <p><strong>约束：</strong>从【前端 / 架构 / 接口 / 文档】视角重点检查【稳定性 / 可维护性 / 一致性】。</p>
+            <p><strong>验证：</strong>把“必须改”和“可选优化”分开列出。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="qi" data-title="常见反模式">
+        <p class="eyebrow">器</p>
+        <h2>常见反模式，不是不能写，而是太容易写得失真</h2>
+        <div class="anti-grid">
+          <article class="anti-card">
+            <h3>只写 <code>review</code></h3>
+            <p><strong>问题：</strong>太泛了，容易只做表面检查。</p>
+            <p><strong>更好的写法：</strong>按【代码 / UI / 架构 / 文档 / 业务方案】review 的方式复查，优先找出最重要的问题，并按优先级排序。</p>
+          </article>
+          <article class="anti-card">
+            <h3>只写 <code>test</code></h3>
+            <p><strong>问题：</strong>不知道到底是写测试、跑测试，还是人工验证。</p>
+            <p><strong>更好的写法：</strong>如果是在修 bug，优先补一个最小失败测试稳定复现问题，再修改代码并确认测试通过；如果不适合写自动化测试，就给出最小可行的验证步骤和结果。</p>
+          </article>
+          <article class="anti-card">
+            <h3>一直问“还有什么要确认的么”</h3>
+            <p><strong>问题：</strong>容易把大量低价值问题重新抛回来。</p>
+            <p><strong>更好的写法：</strong>如果有需要我确认的问题，请只提关键问题，并带上你的推荐方案和理由。</p>
+          </article>
+          <article class="anti-card">
+            <h3>不写范围，导致越改越多</h3>
+            <p><strong>问题：</strong>容易顺手扩展和重构。</p>
+            <p><strong>更好的写法：</strong>这次只解决当前核心问题，不顺手扩展、不做无关重构；如果发现更大问题，先记录并告诉我，不要直接扩散改动。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="slide" data-stage="qi" data-title="补充句与收束">
+        <p class="eyebrow">器</p>
+        <h2>通用补充句，可以直接复用在不同任务里</h2>
+        <div class="template-grid wide">
+          <div class="template-block">
+            <p>这次只解决当前核心问题，不顺手扩展、不做无关重构。</p>
+            <p>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。</p>
+            <p>如果有需要我确认的问题，请只提最关键的 1 到 3 个，并按“问题、选项、利弊、推荐”格式来问。</p>
+            <p>先列出你的关键假设和缺失信息；能自行拍板的直接继续，不能拍板的最后集中列出。</p>
+          </div>
+          <aside class="template-note">
+            <p>收束一句话：道定方向，法定组织，术定打法，器定复用。</p>
+            <p class="quote">用结构降低偏差，用验证确保结果。</p>
+          </aside>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    const stageStartSlides = {
+      dao: 0,
+      fa: 4,
+      shu: 8,
+      qi: 14
+    };
+
+    const stageMeta = {
+      dao: { label: "道", title: "底层判断" },
+      fa: { label: "法", title: "协作组织" },
+      shu: { label: "术", title: "局面打法" },
+      qi: { label: "器", title: "直接复用" }
+    };
+
+    const glyphButtons = document.querySelectorAll(".glyph");
+    const stageLabel = document.getElementById("stageLabel");
+    const stageTitle = document.getElementById("stageTitle");
+
+    function syncStageHighlight() {
+      const slide = Reveal.getCurrentSlide();
+      const stage = (slide && slide.dataset.stage) || "dao";
+      const isCover = Boolean(slide && slide.classList.contains("cover"));
+      const meta = stageMeta[stage] || stageMeta.dao;
+
+      document.body.dataset.stage = stage;
+      document.body.dataset.cover = isCover ? "true" : "false";
+      stageLabel.textContent = meta.label;
+      stageTitle.textContent = slide?.dataset.title || meta.title;
+
+      glyphButtons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.stage === stage);
       });
-    </script>
-  </body>
+    }
+
+    glyphButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = stageStartSlides[button.dataset.stage];
+        if (typeof target === "number") {
+          Reveal.slide(target);
+        }
+      });
+    });
+
+    Reveal.initialize({
+      width: 1366,
+      height: 768,
+      margin: 0.06,
+      hash: true,
+      transition: "fade",
+      backgroundTransition: "fade",
+      controls: true,
+      progress: true,
+      slideNumber: "c/t"
+    });
+
+    Reveal.on("ready", syncStageHighlight);
+    Reveal.on("slidechanged", syncStageHighlight);
+  </script>
+</body>
 </html>

@@ -1,0 +1,845 @@
+:root {
+  --paper: #f5efe3;
+  --paper-warm: #efe3cd;
+  --paper-deep: #dccbb0;
+  --ink: #1a1712;
+  --ink-soft: #4b4135;
+  --accent: #8a2d1a;
+  --accent-soft: #b76643;
+  --gold: #aa7b35;
+  --line: rgba(33, 26, 18, 0.16);
+  --panel: rgba(255, 251, 245, 0.6);
+  --shadow: 0 18px 50px rgba(53, 37, 20, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(138, 45, 26, 0.1), transparent 30%),
+    radial-gradient(circle at 84% 78%, rgba(170, 123, 53, 0.1), transparent 30%),
+    linear-gradient(135deg, #f7f1e7 0%, var(--paper) 48%, var(--paper-deep) 100%);
+  color: var(--ink);
+  transition: background 480ms ease;
+}
+
+body[data-stage="dao"] {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(138, 45, 26, 0.12), transparent 30%),
+    radial-gradient(circle at 84% 78%, rgba(170, 123, 53, 0.08), transparent 30%),
+    linear-gradient(135deg, #f7f1e7 0%, var(--paper) 48%, var(--paper-deep) 100%);
+}
+
+body[data-stage="fa"] {
+  background:
+    radial-gradient(circle at 14% 14%, rgba(112, 55, 24, 0.1), transparent 34%),
+    radial-gradient(circle at 82% 76%, rgba(138, 45, 26, 0.09), transparent 28%),
+    linear-gradient(135deg, #f5eee1 0%, #efe6d8 52%, #e2d2bb 100%);
+}
+
+body[data-stage="shu"] {
+  background:
+    radial-gradient(circle at 18% 16%, rgba(138, 45, 26, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 72%, rgba(80, 55, 35, 0.08), transparent 30%),
+    linear-gradient(140deg, #f6efe3 0%, #ede0cf 50%, #d9c4a6 100%);
+}
+
+body[data-stage="qi"] {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(138, 45, 26, 0.08), transparent 30%),
+    radial-gradient(circle at 78% 74%, rgba(170, 123, 53, 0.12), transparent 32%),
+    linear-gradient(135deg, #f6efe5 0%, #ecdfca 50%, #dbc5a6 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.016) 1px, transparent 1px);
+  background-size: 54px 54px;
+  opacity: 0.2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 24px;
+  border: 1px solid rgba(91, 62, 32, 0.08);
+  pointer-events: none;
+}
+
+.reveal {
+  position: relative;
+  z-index: 2;
+  --r-main-font: "Noto Sans SC", "PingFang SC", sans-serif;
+  --r-heading-font: "Noto Serif SC", "Cormorant Garamond", serif;
+  --r-code-font: "SFMono-Regular", Menlo, Consolas, monospace;
+  --r-main-font-size: 30px;
+  --r-main-color: var(--ink-soft);
+  --r-heading-color: var(--ink);
+  --r-link-color: var(--accent);
+  --r-link-color-hover: #672418;
+  --r-selection-background-color: rgba(138, 45, 26, 0.2);
+}
+
+.reveal .slides section {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.48em;
+  padding: 0.2em 0.46em;
+}
+
+.slide h1,
+.slide h2,
+.slide h3,
+.slide p,
+.slide li {
+  margin: 0;
+}
+
+.slide h1,
+.slide h2,
+.slide h3 {
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.slide h1 {
+  font-size: 2.28em;
+  line-height: 1.06;
+}
+
+.slide h2 {
+  font-size: 1.46em;
+  line-height: 1.18;
+}
+
+.slide h3 {
+  font-size: 0.82em;
+  line-height: 1.28;
+}
+
+.slide p,
+.slide li {
+  font-size: 0.86em;
+  line-height: 1.56;
+  color: var(--ink-soft);
+}
+
+.slide ul,
+.slide ol {
+  margin: 0;
+  padding-left: 1.1em;
+}
+
+.eyebrow {
+  font-family: "Cormorant Garamond", "Noto Serif SC", serif;
+  font-size: 0.5em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.subtitle {
+  max-width: 18em;
+  color: #42392e;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: 0.94em;
+}
+
+.lead,
+.chapter-lead,
+.quote {
+  max-width: 24em;
+}
+
+.quote {
+  margin-top: 0.18em;
+  padding-left: 0.8em;
+  border-left: 3px solid rgba(183, 102, 67, 0.65);
+  color: #5c4a3a;
+}
+
+.stage-hud {
+  position: fixed;
+  top: 24px;
+  left: 30px;
+  z-index: 6;
+  display: grid;
+  gap: 4px;
+  min-width: 168px;
+  padding: 12px 14px;
+  background: rgba(255, 252, 247, 0.5);
+  border: 1px solid rgba(91, 62, 32, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+
+.stage-kicker {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(49, 38, 27, 0.6);
+}
+
+.stage-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.stage-meta strong {
+  font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.stage-meta span {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: rgba(54, 43, 32, 0.78);
+}
+
+.cover {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.cover::before,
+.cover::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.cover::before {
+  inset: 7% 10% auto auto;
+  width: 19vw;
+  height: 19vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(138, 45, 26, 0.18), transparent 72%);
+  filter: blur(8px);
+}
+
+.cover::after {
+  left: 56%;
+  top: 13%;
+  width: 20vw;
+  height: 52vh;
+  border: 1px solid rgba(138, 45, 26, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04)),
+    linear-gradient(0deg, rgba(138, 45, 26, 0.06), rgba(170, 123, 53, 0.03));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.cover-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.74fr);
+  align-items: end;
+  gap: 1.2em;
+  min-height: 78vh;
+  padding-top: 0.35em;
+}
+
+.cover-copy {
+  display: grid;
+  gap: 0.34em;
+  max-width: 20em;
+}
+
+.cover-copy h1 {
+  text-wrap: balance;
+}
+
+.cover-aside {
+  display: grid;
+  gap: 0.42em;
+  align-self: center;
+  justify-items: end;
+}
+
+.cover-panel {
+  width: min(100%, 10.4em);
+  padding: 0.52em 0.58em;
+  background: rgba(255, 250, 244, 0.58);
+  border: 1px solid rgba(91, 62, 32, 0.1);
+  box-shadow: var(--shadow);
+}
+
+.cover-panel.muted {
+  background: rgba(255, 251, 246, 0.34);
+}
+
+.panel-label {
+  display: block;
+  margin-bottom: 0.2em;
+  font-size: 0.4em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(58, 46, 35, 0.62);
+}
+
+.cover-panel strong {
+  display: block;
+  margin-bottom: 0.2em;
+  color: var(--ink);
+}
+
+.flow-slide {
+  gap: 0.52em;
+}
+
+.flow-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.42em;
+  margin-top: 0.1em;
+  max-width: 23em;
+}
+
+.flow-card {
+  position: relative;
+  min-height: 5.4em;
+  padding: 0.54em 0.48em 0.44em;
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.72), rgba(255, 251, 245, 0.34));
+  border-top: 2px solid rgba(138, 45, 26, 0.34);
+  box-shadow: var(--shadow);
+}
+
+.flow-card::after {
+  content: "";
+  position: absolute;
+  right: -0.22em;
+  top: 50%;
+  width: 0.34em;
+  height: 1px;
+  background: rgba(138, 45, 26, 0.32);
+}
+
+.flow-card:last-child::after {
+  display: none;
+}
+
+.flow-card span,
+.chapter-mark {
+  font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+}
+
+.flow-card span {
+  display: block;
+  margin-bottom: 0.12em;
+  font-size: 1.16em;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.chapter-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-slide::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8%;
+  border: 1px solid rgba(138, 45, 26, 0.12);
+}
+
+.chapter-mark {
+  position: absolute;
+  right: 0.18em;
+  bottom: -0.08em;
+  font-size: min(30vw, 4.8em);
+  line-height: 0.8;
+  color: rgba(138, 45, 26, 0.1);
+}
+
+.chapter-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.28em;
+  max-width: 17.6em;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.46em;
+  margin-top: 0.12em;
+}
+
+.pillar,
+.principle-board article,
+.situation-grid article,
+.tactical-grid article,
+.tool-grid article,
+.list-block {
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.72), rgba(255, 251, 245, 0.35));
+  border: 1px solid rgba(91, 62, 32, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.pillar {
+  padding: 0.56em 0.5em 0.5em;
+}
+
+.pillar-no {
+  display: inline-block;
+  margin-bottom: 0.18em;
+  font-size: 0.48em;
+  letter-spacing: 0.18em;
+  color: rgba(138, 45, 26, 0.7);
+}
+
+.principle-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.42em;
+  margin-top: 0.14em;
+}
+
+.principle-board article,
+.situation-grid article {
+  display: grid;
+  gap: 0.16em;
+  min-height: 4.4em;
+  padding: 0.46em 0.48em;
+}
+
+.principle-board strong,
+.situation-grid strong {
+  font-size: 0.46em;
+  letter-spacing: 0.16em;
+  color: rgba(138, 45, 26, 0.72);
+}
+
+.accent-slide {
+  position: relative;
+}
+
+.accent-slide::after {
+  content: "";
+  position: absolute;
+  right: 8%;
+  top: 17%;
+  width: 22%;
+  height: 58%;
+  background: linear-gradient(180deg, rgba(138, 45, 26, 0.04), transparent);
+  border-left: 1px solid rgba(138, 45, 26, 0.12);
+  pointer-events: none;
+}
+
+.loop-row {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.24em;
+  margin: 0.08em 0 0.16em;
+}
+
+.loop-row span {
+  padding: 0.26em 0.12em;
+  text-align: center;
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: 0.74em;
+  color: var(--ink);
+  border-top: 1px solid rgba(138, 45, 26, 0.24);
+  border-bottom: 1px solid rgba(138, 45, 26, 0.24);
+}
+
+.template-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 0.54em;
+  align-items: start;
+}
+
+.template-grid.wide {
+  grid-template-columns: minmax(0, 1.34fr) minmax(280px, 0.66fr);
+}
+
+.template-grid.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.template-block,
+.template-note {
+  position: relative;
+  z-index: 1;
+}
+
+.template-block {
+  display: grid;
+  gap: 0.22em;
+  padding: 0.56em 0.58em;
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.84), rgba(255, 251, 245, 0.46));
+  border-top: 3px solid rgba(138, 45, 26, 0.32);
+  box-shadow: var(--shadow);
+}
+
+.template-note {
+  padding: 0.56em 0.54em;
+  background: rgba(255, 250, 244, 0.45);
+  border: 1px solid rgba(91, 62, 32, 0.08);
+}
+
+.scenario-grid,
+.recipe-grid,
+.anti-grid {
+  display: grid;
+  gap: 0.42em;
+  margin-top: 0.12em;
+}
+
+.scenario-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.scenario-grid.two-col {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.scenario-card,
+.recipe-card,
+.anti-card {
+  padding: 0.52em 0.5em;
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.78), rgba(255, 251, 245, 0.4));
+  border: 1px solid rgba(91, 62, 32, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.scenario-card {
+  display: grid;
+  gap: 0.18em;
+}
+
+.scenario-card p,
+.recipe-card p,
+.anti-card p {
+  font-size: 0.72em;
+  line-height: 1.48;
+}
+
+.scenario-card strong,
+.recipe-card strong,
+.anti-card strong {
+  color: #2f2418;
+}
+
+.recipe-grid,
+.anti-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.recipe-card,
+.anti-card {
+  display: grid;
+  gap: 0.16em;
+}
+
+.compact-list {
+  display: grid;
+  gap: 0.22em;
+}
+
+.compact-list li code {
+  color: #7a291d;
+  font-size: 0.9em;
+}
+
+.situation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.34em;
+  margin-top: 0.12em;
+}
+
+.tactical-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.46em;
+  margin-top: 0.12em;
+}
+
+.tactical-grid article,
+.tool-grid article,
+.list-block {
+  padding: 0.54em 0.52em;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.48em;
+  margin-top: 0.16em;
+}
+
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5em;
+  margin-top: 0.14em;
+}
+
+.closing {
+  justify-content: center;
+}
+
+.closing .lead {
+  font-family: "Noto Serif SC", "Cormorant Garamond", serif;
+  font-size: 1.08em;
+  color: #2a2016;
+}
+
+.glyph-field {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.glyph-field::before {
+  content: "";
+  position: absolute;
+  left: 39vw;
+  top: 20.4vh;
+  width: 22vw;
+  height: 30vh;
+  border: 3px solid rgba(138, 45, 26, 0.24);
+  box-shadow:
+    inset 0 0 0 1px rgba(138, 45, 26, 0.08),
+    0 0 0 10px rgba(138, 45, 26, 0.03);
+  opacity: 0;
+  transform: scale(0.96);
+  transition:
+    opacity 380ms ease,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glyph {
+  position: absolute;
+  border: none;
+  background: transparent;
+  color: rgba(138, 45, 26, 0.54);
+  font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+  font-size: clamp(60px, 6.8vw, 98px);
+  line-height: 0.92;
+  cursor: pointer;
+  pointer-events: auto;
+  transform-origin: center;
+  transition:
+    color 320ms ease,
+    opacity 420ms ease,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    right 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    top 620ms cubic-bezier(0.22, 1, 0.36, 1),
+    bottom 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glyph:hover {
+  color: rgba(138, 45, 26, 0.3);
+  transform: scale(1.03);
+}
+
+.glyph.is-active {
+  color: rgba(138, 45, 26, 0.4);
+}
+
+.glyph-dao {
+  left: 43vw;
+  top: 24.2vh;
+}
+
+.glyph-fa {
+  left: 51.2vw;
+  top: 24.2vh;
+}
+
+.glyph-shu {
+  left: 43vw;
+  top: 37.2vh;
+}
+
+.glyph-qi {
+  left: 51.2vw;
+  top: 37.2vh;
+}
+
+body[data-cover="true"] .glyph-field::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+body[data-cover="false"] .glyph {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body[data-cover="false"] .glyph-field::before {
+  opacity: 0;
+  transform: scale(0.88);
+}
+
+body[data-cover="false"] .glyph.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  color: rgba(138, 45, 26, 0.15);
+}
+
+body[data-cover="false"] .glyph-dao {
+  left: 1vw;
+  top: -1.2vh;
+  transform: rotate(-7deg) scale(1.08);
+}
+
+body[data-cover="false"] .glyph-fa {
+  right: 2vw;
+  left: auto;
+  top: 2vh;
+  transform: rotate(7deg) scale(1.08);
+}
+
+body[data-cover="false"] .glyph-shu {
+  left: 5vw;
+  top: auto;
+  bottom: -6vh;
+  transform: rotate(-5deg) scale(1.1);
+}
+
+body[data-cover="false"] .glyph-qi {
+  right: 5vw;
+  left: auto;
+  top: auto;
+  bottom: -4vh;
+  transform: rotate(6deg) scale(1.08);
+}
+
+body[data-cover="false"] .glyph:not(.is-active) {
+  transform: scale(0.72);
+}
+
+.reveal .progress {
+  color: rgba(138, 45, 26, 0.38);
+  height: 4px;
+}
+
+.reveal .controls {
+  color: rgba(138, 45, 26, 0.54);
+}
+
+.reveal .slide-number {
+  bottom: 22px;
+  right: 28px;
+  color: rgba(53, 41, 30, 0.65);
+  background: transparent;
+}
+
+@media (max-width: 1080px) {
+  .reveal {
+    --r-main-font-size: 27px;
+  }
+
+  .stage-hud {
+    top: 16px;
+    left: 16px;
+    min-width: 152px;
+    padding: 10px 12px;
+  }
+
+  .cover-grid,
+  .template-grid,
+  .split-grid,
+  .tool-grid,
+  .tactical-grid,
+  .principle-board,
+  .pillar-grid,
+  .scenario-grid,
+  .scenario-grid.two-col,
+  .recipe-grid,
+  .anti-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .situation-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-track {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .accent-slide::after,
+  .cover::after,
+  body::after {
+    display: none;
+  }
+
+  .glyph-field::before {
+    left: 31vw;
+    top: 20vh;
+    width: 38vw;
+    height: 26vh;
+  }
+
+  .glyph-dao {
+    left: 37vw;
+    top: 24vh;
+  }
+
+  .glyph-fa {
+    left: 51vw;
+    top: 24vh;
+  }
+
+  .glyph-shu {
+    left: 37vw;
+    top: 36vh;
+  }
+
+  .glyph-qi {
+    left: 51vw;
+    top: 36vh;
+  }
+
+  body[data-cover="false"] .glyph-dao {
+    left: -1vw;
+    top: 0;
+  }
+
+  body[data-cover="false"] .glyph-fa {
+    right: 1vw;
+    top: 2vh;
+  }
+
+  body[data-cover="false"] .glyph-shu {
+    left: 2vw;
+    bottom: -4vh;
+    top: auto;
+  }
+
+  body[data-cover="false"] .glyph-qi {
+    right: 2vw;
+    bottom: -3vh;
+    top: auto;
+  }
+}
