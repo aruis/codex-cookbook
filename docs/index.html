@@ -8,142 +8,172 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-  <link rel="stylesheet" href="./slides.css">
+  <link rel="stylesheet" href="./slides.css?v=20260418-1">
 </head>
-<body>
-  <div class="stage-hud" aria-live="polite">
-    <div class="stage-kicker">Codex Cookbook</div>
-    <div class="stage-meta">
-      <strong id="stageLabel">道</strong>
-      <span id="stageTitle">开场</span>
-    </div>
+<body data-stage="dao" data-layout="cover">
+  <div class="seal-hero-layer" id="sealHeroLayer" aria-hidden="true">
+    <div class="seal-hero-overlay" data-hero-letter="道"></div>
+    <div class="seal-hero-overlay" data-hero-letter="法"></div>
+    <div class="seal-hero-overlay" data-hero-letter="术"></div>
+    <div class="seal-hero-overlay" data-hero-letter="器"></div>
   </div>
-
-  <div class="glyph-field" aria-label="章节背景导航">
-    <button type="button" class="glyph glyph-dao" data-stage="dao" aria-label="跳转到道">道</button>
-    <button type="button" class="glyph glyph-fa" data-stage="fa" aria-label="跳转到法">法</button>
-    <button type="button" class="glyph glyph-shu" data-stage="shu" aria-label="跳转到术">术</button>
-    <button type="button" class="glyph glyph-qi" data-stage="qi" aria-label="跳转到器">器</button>
-  </div>
+  <div class="hero-overlay" id="heroOverlay" aria-hidden="true"></div>
 
   <div class="reveal">
     <div class="slides">
-      <section class="slide cover" data-stage="dao" data-title="开场">
-        <div class="cover-grid">
-          <div class="cover-copy">
-            <div class="seal-mark" aria-label="道术法器印章">
-              <span>道</span>
-              <span>法</span>
-              <span>术</span>
-              <span>器</span>
+      <section class="slide cover-slide" data-stage="dao" data-layout="cover" data-title="开场">
+        <div class="seal-mark" aria-label="道法术器印章">
+          <span data-hero-letter="道" data-hero-role="cover">道</span>
+          <span data-hero-letter="法" data-hero-role="cover">法</span>
+          <span data-hero-letter="术" data-hero-role="cover">术</span>
+          <span data-hero-letter="器" data-hero-role="cover">器</span>
+        </div>
+        <div class="cover-copy">
+          <p class="eyebrow">Codex Cookbook</p>
+          <h1>Codex 实战经验谈</h1>
+          <p class="subtitle">一份面向团队与个人开发者的 Codex 实战手册，聚焦高频场景、可复制模板和开箱即用提示词。</p>
+        </div>
+      </section>
+
+      <section class="slide overview-slide" data-stage="dao" data-layout="overview" data-title="阅读顺序">
+        <div class="overview-list">
+          <article class="overview-item">
+            <div class="badge" data-hero-letter="道" data-hero-role="overview">道</div>
+            <div>
+              <p>建立和 Codex 协作时最重要的底层判断。</p>
             </div>
-            <p class="eyebrow cover-eyebrow">Codex Cookbook</p>
-            <h1>与 Codex 协作的<br>结构化实战手册</h1>
-            <p class="subtitle cover-subtitle">一份面向团队与个人开发者的 Codex 实战手册，聚焦高频场景、可复制模板和稳定复用的协作方法。</p>
-          </div>
-          <aside class="cover-aside">
-          </aside>
-        </div>
-      </section>
-
-      <section class="slide flow-slide" data-stage="dao" data-title="阅读顺序">
-        <p class="eyebrow">阅读顺序</p>
-        <h2>先建立判断，再进入协作与复用</h2>
-        <div class="flow-track">
-          <article class="flow-card">
-            <span>道</span>
-            <h3>底层判断</h3>
-            <p>建立和 Codex 协作时最重要的底层判断。</p>
           </article>
-          <article class="flow-card">
-            <span>法</span>
-            <h3>协作组织</h3>
-            <p>理解任务该如何组织，而不是直接堆提示词。</p>
+          <article class="overview-item">
+            <div class="badge" data-hero-letter="法" data-hero-role="overview">法</div>
+            <div>
+              <p>理解任务该如何组织，而不是直接堆提示词。</p>
+            </div>
           </article>
-          <article class="flow-card">
-            <span>术</span>
-            <h3>局面打法</h3>
-            <p>进入具体局面后，按高频场景切换打法。</p>
+          <article class="overview-item">
+            <div class="badge" data-hero-letter="术" data-hero-role="overview">术</div>
+            <div>
+              <p>遇到具体局面时，去找对应打法。</p>
+            </div>
           </article>
-          <article class="flow-card">
-            <span>器</span>
-            <h3>直接复用</h3>
-            <p>需要马上复制时，直接拿模板、反模式和补充句。</p>
+          <article class="overview-item">
+            <div class="badge" data-hero-letter="器" data-hero-role="overview">器</div>
+            <div>
+              <p>需要马上复制时，直接用模板、反模式和通用补充句。</p>
+            </div>
           </article>
         </div>
       </section>
 
-      <section class="slide chapter-slide" data-stage="dao" data-title="道">
-        <div class="chapter-mark">道</div>
-        <div class="chapter-body">
+      <section class="slide chapter-slide" data-stage="dao" data-layout="chapter" data-title="道">
+        <div class="hero-target hero-target-intro" data-hero-letter="道" data-hero-tone="intro" data-hero-role="chapter"></div>
+        <div class="chapter-copy">
           <p class="eyebrow">Dao</p>
           <h2>先讲底层判断</h2>
-          <p class="chapter-lead">这一章只回答一件事：为什么有些协作会失焦、失真、失稳。</p>
+          <p class="lead">这一章只回答一件事：为什么有些协作会失焦、失真、失稳。</p>
         </div>
       </section>
 
-      <section class="slide" data-stage="dao" data-title="三个判断">
-        <p class="eyebrow">道</p>
-        <h2>三个底层判断，决定结果上限</h2>
-        <div class="pillar-grid">
-          <article class="pillar">
-            <span class="pillar-no">01</span>
-            <h3>以边界换聚焦</h3>
-            <p>不给边界，Codex 就只能平均用力；明确不做什么、什么可妥协、什么不能妥协，结果才会真正聚焦。</p>
-          </article>
-          <article class="pillar">
-            <span class="pillar-no">02</span>
-            <h3>以信息换准确</h3>
-            <p>你提供的信息密度，决定结果和预期的贴合度；目标、背景、约束和细节说得越清楚，返工越少。</p>
-          </article>
-          <article class="pillar">
-            <span class="pillar-no">03</span>
-            <h3>以文档和验证换稳定</h3>
-            <p>上下文会衰减，口头共识会丢失；目标、方案、进度要尽早落文档并持续更新，结果还要靠测试或验证闭环来证明。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="dao" data-layout="content" data-title="三个底层判断">
+        <div class="hero-target hero-target-watermark" data-hero-letter="道" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">道</p>
+          <h2>三个底层判断，决定结果上限</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>以边界换聚焦</h3>
+              <p>不给边界，Codex 就只能平均用力；明确不做什么、什么可妥协、什么不能妥协，结果才会真正聚焦。</p>
+            </article>
+            <article class="content-block">
+              <h3>以信息换准确</h3>
+              <p>你提供的信息密度，决定结果和预期的贴合度；目标、背景、约束和细节说得越清楚，返工越少。</p>
+            </article>
+            <article class="content-block">
+              <h3>以文档和验证换稳定</h3>
+              <p>上下文会衰减，口头共识会丢失；目标、方案、进度要尽早落文档并持续更新，结果还要靠测试或验证闭环来证明。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="slide chapter-slide" data-stage="fa" data-title="法">
-        <div class="chapter-mark">法</div>
-        <div class="chapter-body">
+      <section class="slide chapter-slide" data-stage="fa" data-layout="chapter" data-title="法">
+        <div class="hero-target hero-target-intro" data-hero-letter="法" data-hero-tone="intro" data-hero-role="chapter"></div>
+        <div class="chapter-copy">
           <p class="eyebrow">Fa</p>
           <h2>再讲协作如何组织</h2>
-          <p class="chapter-lead">“法”解决协作组织。目标、边界、阶段、验证，要被组织成一条可执行的链。</p>
+          <p class="lead">“法”解决协作组织。目标、边界、阶段、验证，要被组织成一条可执行的链。</p>
         </div>
       </section>
 
-      <section class="slide" data-stage="fa" data-title="六条原则">
-        <p class="eyebrow">法</p>
-        <h2>常见任务里，先按这 6 条组织配合</h2>
-        <div class="principle-board">
-          <article><strong>01</strong><p>先收敛，再展开。目标、边界、路径不清时，先收敛问题。</p></article>
-          <article><strong>02</strong><p>明确任务的时间尺度。长期建设、阶段性过渡、短期止血，是三种不同任务。</p></article>
-          <article><strong>03</strong><p>根据阶段定模式。方案期适合讨论和计划，问题模糊时适合先诊断。</p></article>
-          <article><strong>04</strong><p>用结构化表达降低偏差，让目标、约束、输出和验证都清楚可读。</p></article>
-          <article><strong>05</strong><p>用文档沉淀阶段共识。多轮协作不要只靠会话记忆。</p></article>
-          <article><strong>06</strong><p>用验证闭环约束结果。不要只停在“已经改了”。</p></article>
+      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="七条组织原则">
+        <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">法</p>
+          <h2>常见任务里，建议先按下面 7 条来组织你和 Codex 的配合。</h2>
+          <div class="content-grid two-col">
+            <article class="content-block">
+              <h3>01. 先收敛，再展开</h3>
+              <p>目标、边界、路径不清时，先收敛问题。</p>
+            </article>
+            <article class="content-block">
+              <h3>02. 明确任务的时间尺度</h3>
+              <p>长期建设、阶段性过渡、短期止血，是三种不同任务，方案选择标准也不同。</p>
+            </article>
+            <article class="content-block">
+              <h3>03. 根据阶段定模式</h3>
+              <p>方案期适合讨论和计划，问题模糊时适合先诊断，修 bug 适合先复现，主线清晰后再进入执行，阶段结束后再独立复查。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="slide accent-slide" data-stage="fa" data-title="最小闭环">
-        <p class="eyebrow">法</p>
-        <h2>单次任务里，这 6 条通常会压缩成一个最小闭环</h2>
-        <div class="loop-row">
-          <span>目标</span>
-          <span>模式</span>
-          <span>约束</span>
-          <span>输出</span>
-          <span>验证</span>
+      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="七条组织原则续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">法</p>
+          <h2>后 4 条，决定协作是否稳、是否能持续推进。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>04. 用结构化表达降低偏差</h3>
+              <p>不要想到什么说什么，尽量把请求组织成稳定结构，让目标、约束、输出和验证标准都清楚可读。</p>
+            </article>
+            <article class="content-block">
+              <h3>05. 用文档沉淀阶段共识</h3>
+              <p>多轮协作不要只靠会话记忆，目标、方案、决策、进度和风险要尽早外化，并持续更新。</p>
+            </article>
+            <article class="content-block">
+              <h3>06. 用验证闭环约束结果</h3>
+              <p>不要只停在“已经改了”，要用测试、验收标准或最小验证步骤确认结果真的成立。</p>
+            </article>
+            <article class="content-block">
+              <h3>07. 兜底方案必须显式确认</h3>
+              <p>准备采用临时解前，先说明更优路径为什么暂时不可行；实施前先确认，实施后再验证并说明风险与回收方式。</p>
+            </article>
+          </div>
         </div>
-        <p class="quote">它的价值不在格式本身，而在于提前说清偏差最容易出现的地方。</p>
       </section>
 
-      <section class="slide" data-stage="fa" data-title="推荐骨架">
-        <p class="eyebrow">法</p>
-        <h2>推荐骨架</h2>
-        <div class="template-grid wide single">
-          <div class="template-block">
+      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="最小闭环">
+        <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
+        <div class="content-shell slim-shell">
+          <p class="eyebrow">法</p>
+          <h2>在单次任务里，这 7 条通常可以压缩成一个最小闭环。</h2>
+          <div class="loop-strip">
+            <span>目标</span>
+            <span>模式</span>
+            <span>约束</span>
+            <span>输出</span>
+            <span>验证</span>
+          </div>
+          <p class="quote">它的价值不在格式本身，而在于提前说清偏差最容易出现的地方。</p>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="推荐骨架">
+        <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">法</p>
+          <h2>推荐骨架</h2>
+          <div class="text-panel">
             <p><strong>目标：</strong>解决【具体问题】；如果适合，尽量逼近【最终可用状态】。</p>
             <p><strong>模式：</strong>【直接推进 / 先诊断 / 先复现 / 先收敛计划】。</p>
             <p><strong>约束：</strong>这次只解决【范围 A】，不扩展到【范围 B】；这次任务属于【长期建设 / 阶段性过渡 / 短期止血】，优先【长期可维护 / 短期可交付】。</p>
@@ -153,197 +183,361 @@
         </div>
       </section>
 
-      <section class="slide chapter-slide" data-stage="shu" data-title="术">
-        <div class="chapter-mark">术</div>
-        <div class="chapter-body">
+      <section class="slide chapter-slide" data-stage="shu" data-layout="chapter" data-title="术">
+        <div class="hero-target hero-target-intro" data-hero-letter="术" data-hero-tone="intro" data-hero-role="chapter"></div>
+        <div class="chapter-copy">
           <p class="eyebrow">Shu</p>
           <h2>进入具体局面后，再选择打法</h2>
-          <p class="chapter-lead">下面不是零散技巧，而是几类高频局面下的常用打法。</p>
+          <p class="lead">这一层解决的是“进入具体局面后，应该怎么出手”。下面不是零散技巧，而是几类高频局面下的常用打法。</p>
         </div>
       </section>
 
-      <section class="slide" data-stage="shu" data-title="11 类局面">
-        <p class="eyebrow">术</p>
-        <h2>先看全图：11 类高频局面</h2>
-        <div class="situation-grid">
-          <article><strong>01</strong><p>局面未明：先诊断，不急着改。</p></article>
-          <article><strong>02</strong><p>主线清晰：直接推进。</p></article>
-          <article><strong>03</strong><p>目标偏长期建设：优先长期可维护。</p></article>
-          <article><strong>04</strong><p>目标偏短期止血：优先恢复可用。</p></article>
-          <article><strong>05</strong><p>不需要兼容过渡：直接硬切。</p></article>
-          <article><strong>06</strong><p>连续失败后：先复盘，再继续。</p></article>
-          <article><strong>07</strong><p>临近收口：补验证闭环。</p></article>
-          <article><strong>08</strong><p>Bug 场景：先复现，再修复。</p></article>
-          <article><strong>09</strong><p>多轮协作：先落文档，再继续推进。</p></article>
-          <article><strong>10</strong><p>任务复杂：先收敛计划。</p></article>
-          <article><strong>11</strong><p>中型项目：按阶段推进。</p></article>
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11 类局面">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术</p>
+          <h2>先看全图：前 6 类高频局面</h2>
+          <div class="overview-list compact-grid">
+            <article class="overview-mini"><span>01</span><p>局面未明：先诊断，不急着改</p></article>
+            <article class="overview-mini"><span>02</span><p>主线清晰：直接推进</p></article>
+            <article class="overview-mini"><span>03</span><p>目标偏长期建设：优先长期可维护</p></article>
+            <article class="overview-mini"><span>04</span><p>目标偏短期止血：优先恢复可用</p></article>
+            <article class="overview-mini"><span>05</span><p>不需要兼容过渡：直接硬切</p></article>
+            <article class="overview-mini"><span>06</span><p>连续失败后：先复盘，再继续</p></article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="shu" data-title="清晰度与模式">
-        <p class="eyebrow">术 · 第一组</p>
-        <h2>先判断任务清晰度，再决定是诊断、计划还是直接推进</h2>
-        <div class="scenario-grid">
-          <article class="scenario-card">
-            <h3>1. 局面未明：先诊断，不急着改</h3>
-            <p><strong>适用：</strong>想先找问题，再决定是否开工；任务还比较模糊。</p>
-            <p><strong>模板：</strong>先不要急着改。先从【指定维度】系统指出当前存在的问题，并按优先级排序；如果需要，再补充你推荐的修正方向。</p>
-            <p><strong>误用边界：</strong>不限定“指定维度”，输出容易发散。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>2. 主线清晰：直接推进</h3>
-            <p><strong>适用：</strong>方向已经清楚，不想频繁来回确认，更关心结果。</p>
-            <p><strong>模板：</strong>你直接按逼近最终目标的思路推进，先读上下文再动手；非关键问题不要频繁停下来，只有你不能拍板的问题再集中问我。</p>
-            <p><strong>误用边界：</strong>边界不清时容易顺手扩散改动，所以最好同时写上范围约束。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>10. 任务复杂：先收敛计划</h3>
-            <p><strong>适用：</strong>目标不够清楚，需求里有多个分支或决策点。</p>
-            <p><strong>模板：</strong>先不要急着落代码。先把目标、约束、范围边界、关键分歧点、推荐路径和执行步骤梳理清楚；如果有需要我确认的地方，按优先级逐条拿出来。</p>
-            <p><strong>误用边界：</strong>任务已经很直接时，不要机械开启计划模式。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11 类局面续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术</p>
+          <h2>后 5 类，集中在收口、复现、收敛与阶段推进。</h2>
+          <div class="overview-list compact-grid">
+            <article class="overview-mini"><span>07</span><p>临近收口：补验证闭环</p></article>
+            <article class="overview-mini"><span>08</span><p>Bug 场景：先复现，再修复</p></article>
+            <article class="overview-mini"><span>09</span><p>多轮协作：先落文档，再继续推进</p></article>
+            <article class="overview-mini"><span>10</span><p>任务复杂：先收敛计划</p></article>
+            <article class="overview-mini"><span>11</span><p>中型项目：按阶段推进</p></article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="shu" data-title="长期与短期取舍">
-        <p class="eyebrow">术 · 第二组</p>
-        <h2>时间尺度不同，打法就不同</h2>
-        <div class="scenario-grid">
-          <article class="scenario-card">
-            <h3>3. 目标偏长期建设：优先长期可维护</h3>
-            <p><strong>适用：</strong>这次改动后面还会继续演进，担心短期通过掩盖长期问题。</p>
-            <p><strong>模板：</strong>不要为了短期通过牺牲长期可维护性、健壮性和扩展性。优先选择中长期站得住的方案；如果必须做短期方案，请明确标注取舍和后续风险。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>4. 目标偏短期止血：优先恢复可用</h3>
-            <p><strong>适用：</strong>线上问题需要先恢复，当前目标是快速止损，而不是一次性彻底治理。</p>
-            <p><strong>模板：</strong>这次以短期止血为主，优先恢复可用和控制影响面，不追求一次性彻底治理；如果用了临时方案，请标注后续治理项。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>5. 不需要兼容过渡：直接硬切</h3>
-            <p><strong>适用：</strong>明确知道不需要兼容层、双写、灰度适配或过渡方案。</p>
-            <p><strong>模板：</strong>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。如果会破坏存量契约，请直接同步调整调用方和相关实现。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="1. 局面未明">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 01</p>
+          <h2>局面未明：先诊断，不急着改</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>想看 UI、代码、方案哪里还不够好；任务还比较模糊；想先找问题，再决定是否开工。</p></article>
+            <article class="content-block"><h3>模板</h3><p>先不要急着改。先从【指定维度】系统指出当前存在的问题，并按优先级排序；如果需要，再补充你推荐的修正方向。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>不限定“指定维度”，输出容易发散。任务已经很明确时，没必要先绕回诊断。</p></article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="shu" data-title="修复与收口">
-        <p class="eyebrow">术 · 第三组</p>
-        <h2>临近交付时，重点是复现、验证和避免盲改</h2>
-        <div class="scenario-grid two-col">
-          <article class="scenario-card">
-            <h3>7. 临近收口：补验证闭环</h3>
-            <p><strong>适用：</strong>不想只停留在“代码已改”，希望证明这次改动真的有效。</p>
-            <p><strong>模板：</strong>写出这次完成的验收标准，再补充必要测试或验证步骤，证明这次修改确实解决了问题，而不是靠硬压、绕过或碰巧通过。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>8. Bug 场景：先复现，再修复</h3>
-            <p><strong>适用：</strong>正在修 bug，希望先锁定问题，再改代码。</p>
-            <p><strong>模板：</strong>先不要直接改代码。优先补一个最小失败测试来稳定复现这个 bug；如果不适合写自动化测试，就先给出最小可行复现和验证步骤。确认问题被稳定复现后，再修改代码并检查没有引入误伤。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="2. 主线清晰">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 02</p>
+          <h2>主线清晰：直接推进</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>方向已经清楚；不想频繁来回确认；更关心结果，不想被过程噪音打断。</p></article>
+            <article class="content-block"><h3>模板</h3><p>你直接按逼近最终目标的思路推进，先读上下文再动手；非关键问题不要频繁停下来，只有你不能拍板的问题再集中问我。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>边界不清时，容易顺手扩散改动，所以最好同时写上范围约束。</p></article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="shu" data-title="复盘与阶段推进">
-        <p class="eyebrow">术 · 第四组</p>
-        <h2>任务跨多轮或反复失败时，要切换到复盘与阶段推进</h2>
-        <div class="scenario-grid">
-          <article class="scenario-card">
-            <h3>6. 连续失败后：先复盘，再继续</h3>
-            <p><strong>模板：</strong>这件事已经反复失败多次。请先判断是目标错、路径错，还是执行细节错，并给出下一轮最值得尝试的方案，以及建议停掉哪些低收益动作。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>9. 多轮协作：先落文档，再继续推进</h3>
-            <p><strong>模板：</strong>这件事会跨多轮推进。请先把当前目标、关键约束、已达成结论、待决问题和下一步计划整理成文档或结构化记录；后续推进过程中持续更新，不要只依赖会话上下文。</p>
-          </article>
-          <article class="scenario-card">
-            <h3>11. 中型项目：按阶段推进</h3>
-            <p><strong>推荐流程：</strong>先对齐业务目标、场景边界和不做项；文档未定时先做计划收敛；执行阶段默认直接推进；只有在阶段切换、偏航或卡住时，再回到计划收敛；关键阶段结束后，再补一轮独立复查。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="3. 长期建设">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 03</p>
+          <h2>目标偏长期建设：优先长期可维护</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>这次改动后面还会继续演进；你担心短期通过掩盖长期问题。</p></article>
+            <article class="content-block"><h3>模板</h3><p>不要为了短期通过牺牲长期可维护性、健壮性和扩展性。优先选择中长期站得住的方案；如果必须做短期方案，请明确标注取舍和后续风险。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>如果业务本身就是一次性或临时方案，要明确告诉它可以接受短期解。</p></article>
+          </div>
         </div>
       </section>
 
-      <section class="slide chapter-slide" data-stage="qi" data-title="器">
-        <div class="chapter-mark">器</div>
-        <div class="chapter-body">
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="4. 短期止血">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 04</p>
+          <h2>目标偏短期止血：优先恢复可用</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>线上问题需要先恢复；当前目标是快速止损，而不是一次性彻底治理；你可以接受阶段性技术债，但不能接受继续失效。</p></article>
+            <article class="content-block"><h3>模板</h3><p>这次以短期止血为主，优先恢复可用和控制影响面，不追求一次性彻底治理；如果用了临时方案，请标注后续治理项。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>如果当前不是应急场景，就不要用止血思路替代长期建设。即使是止血，也要说明遗留风险和后续治理事项。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="5. 直接硬切">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 05</p>
+          <h2>不需要兼容过渡：直接硬切</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>这次改动会破坏存量契约；你明确知道不需要兼容层、双写、灰度适配或过渡方案；你希望直接切到目标状态。</p></article>
+            <article class="content-block"><h3>模板</h3><p>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。如果会破坏存量契约，请直接同步调整调用方和相关实现。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>如果真实场景仍然需要平滑迁移、灰度发布或跨版本兼容，就不要强行硬切。决定硬切前，要确认受影响范围和调用方是可控的。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="6. 先复盘">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 06</p>
+          <h2>连续失败后：先复盘，再继续</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>已经反复试了多轮；怀疑方向本身不对；需要重新对齐目标、路径和停点。</p></article>
+            <article class="content-block"><h3>模板</h3><p>这件事已经反复失败多次。请先判断是目标错、路径错，还是执行细节错，并给出下一轮最值得尝试的方案，以及建议停掉哪些低收益动作。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>如果不要求“下一轮方案”，很容易停留在空泛复盘。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="7. 补验证闭环">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 07</p>
+          <h2>临近收口：补验证闭环</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>不想只停留在“代码已改”；希望它证明这次改动真的有效；希望它先给出验收标准，再实现和验证。</p></article>
+            <article class="content-block"><h3>模板</h3><p>写出这次完成的验收标准，再补充必要测试或验证步骤，证明这次修改确实解决了问题，而不是靠硬压、绕过或碰巧通过。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>不要把验收标准写成空话，验证步骤要能真正证明问题已解决。不要为了补验证顺手扩大改动范围。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="8. 先复现">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 08</p>
+          <h2>Bug 场景：先复现，再修复</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>正在修 bug；希望先锁定问题，再改代码；不希望修复过程变成盲改。</p></article>
+            <article class="content-block"><h3>模板</h3><p>先不要直接改代码。优先补一个最小失败测试来稳定复现这个 bug；如果不适合写自动化测试，就先给出最小可行复现和验证步骤。确认问题被稳定复现后，再修改代码并检查没有引入误伤。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>不要为了让测试通过而把测试写得过宽或偏离真实 bug。测试要尽量最小化，只锁定这次问题。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="9. 先落文档">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 09</p>
+          <h2>多轮协作：先落文档，再继续推进</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>任务会跨多轮对话持续推进；目标、方案、进度已经开始变复杂；你担心上下文压缩后丢失关键共识。</p></article>
+            <article class="content-block"><h3>模板</h3><p>这件事会跨多轮推进。请先把当前目标、关键约束、已达成结论、待决问题和下一步计划整理成文档或结构化记录；后续推进过程中持续更新，不要只依赖会话上下文。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>很小的一次性任务，不需要为了形式而额外维护文档。文档不是一次性快照，后续关键变化要同步更新。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="10. 先收敛计划">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 10</p>
+          <h2>任务复杂：先收敛计划（推荐开启计划模式）</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>任务目标还不够清楚；需求里有多个分支或决策点；你希望先讨论方案、拆步骤、确认边界，再进入实现。</p></article>
+            <article class="content-block"><h3>模板</h3><p>先不要急着落代码。先把目标、约束、范围边界、关键分歧点、推荐路径和执行步骤梳理清楚；如果有需要我确认的地方，按优先级逐条拿出来。</p></article>
+            <article class="content-block"><h3>误用边界</h3><p>任务已经很直接时，不要机械开启计划模式，否则会拖慢推进。计划模式适合收敛问题和确认路径，不适合代替实际落地。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11. 按阶段推进">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 11</p>
+          <h2>中型项目：按阶段推进</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>适用</h3><p>在做中型项目或独立模块；业务和场景需要先对齐，再进入实现；你希望先把文档、边界和开发路径收敛清楚。</p></article>
+            <article class="content-block"><h3>推荐流程</h3><p>先对齐业务目标、场景边界和不做项，不急着落代码。文档未定时，先做计划收敛，把关键共识定下来。文档基本定下来后，再用计划模式查漏补缺。</p></article>
+            <article class="content-block"><h3>推荐模板</h3><p>这是一个中型项目 / 模块。先不要直接开始实现。第一步，先把业务目标、场景边界、约束和不做项收敛清楚。第二步，文档基本定下来后，再用计划模式查漏补缺。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="按阶段推进续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 11</p>
+          <h2>进入执行阶段后，默认直接推进。</h2>
+          <div class="content-grid">
+            <article class="content-block"><h3>推荐流程续</h3><p>进入执行阶段后，默认直接推进，不要把计划模式常驻开启。只有在阶段切换、明显偏航、反复失败或需要重新收敛时，再回到计划模式。关键阶段完成后，再做一次独立复查。</p></article>
+            <article class="content-block"><h3>推荐模板续</h3><p>第三步，进入执行阶段后默认直接推进；只有在阶段切换、偏航或卡住时，再回到计划收敛。第四步，关键阶段结束后，再补一轮独立复查。</p></article>
+            <article class="content-block"><h3>说明</h3><p>并行代理或辅助执行更适合复查、补充视角和并行审视，不适合承接必须立刻解决的主线任务。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide chapter-slide" data-stage="qi" data-layout="chapter" data-title="器">
+        <div class="hero-target hero-target-intro" data-hero-letter="器" data-hero-tone="intro" data-hero-role="chapter"></div>
+        <div class="chapter-copy">
           <p class="eyebrow">Qi</p>
-          <h2>最后才进入拿来即用</h2>
-          <p class="chapter-lead">这一章不再讲判断，而是直接给能复制的模板、反模式和补充句。</p>
+          <h2>最后讲“拿来即用”</h2>
+          <p class="lead">这一层解决的是“拿来即用”。需要马上复制时，直接用模板、反模式和通用补充句。</p>
         </div>
       </section>
 
-      <section class="slide" data-stage="qi" data-title="四个推荐组合">
-        <p class="eyebrow">器</p>
-        <h2>四个推荐组合</h2>
-        <div class="recipe-grid">
-          <article class="recipe-card">
-            <h3>方案讨论型</h3>
-            <p><strong>目标：</strong>先收敛【某个方案 / 某个模块怎么做】，先不急着写代码。</p>
-            <p><strong>模式：</strong>必要时先做计划收敛。</p>
-            <p><strong>输出：</strong>按“问题、选项、利弊、推荐”格式整理，我来拍板。</p>
-          </article>
-          <article class="recipe-card">
-            <h3>直接开发型</h3>
-            <p><strong>目标：</strong>解决【具体问题】，并尽量逼近【最终可用方案】。</p>
-            <p><strong>约束：</strong>先读上下文再动手；非关键问题不要频繁停下来；只解决当前核心问题。</p>
-            <p><strong>验证：</strong>改完后补充【测试 / 最小验证闭环】。</p>
-          </article>
-          <article class="recipe-card">
-            <h3>Bug 修复型</h3>
-            <p><strong>目标：</strong>修复【某个 bug】，并避免盲改。</p>
-            <p><strong>约束：</strong>优先先复现，再修复；不要为了让测试通过而绕开真实问题。</p>
-            <p><strong>输出：</strong>说明 bug 根因、如何复现、代码如何修复。</p>
-          </article>
-          <article class="recipe-card">
-            <h3>独立复查型</h3>
-            <p><strong>目标：</strong>对当前结果做一轮独立复查，而不是重复主流程。</p>
-            <p><strong>约束：</strong>从【前端 / 架构 / 接口 / 文档】视角重点检查【稳定性 / 可维护性 / 一致性】。</p>
-            <p><strong>验证：</strong>把“必须改”和“可选优化”分开列出。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="四个推荐组合">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>四个推荐组合，先看前两组。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>方案讨论型</h3>
+              <p>目标：先收敛【某个方案 / 某个模块怎么做】，先不急着写代码。输出：按“问题、选项、利弊、推荐”格式整理，我来拍板。</p>
+            </article>
+            <article class="content-block">
+              <h3>直接开发型</h3>
+              <p>目标：解决【具体问题】，并尽量逼近【最终可用方案】。约束：先读上下文再动手；非关键问题不要频繁停下来；这次只解决【当前核心问题】。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="qi" data-title="常见反模式">
-        <p class="eyebrow">器</p>
-        <h2>常见反模式，不是不能写，而是太容易写得失真</h2>
-        <div class="anti-grid">
-          <article class="anti-card">
-            <h3>只写 <code>review</code></h3>
-            <p><strong>问题：</strong>太泛了，容易只做表面检查。</p>
-            <p><strong>更好的写法：</strong>按【代码 / UI / 架构 / 文档 / 业务方案】review 的方式复查，优先找出最重要的问题，并按优先级排序。</p>
-          </article>
-          <article class="anti-card">
-            <h3>只写 <code>test</code></h3>
-            <p><strong>问题：</strong>不知道到底是写测试、跑测试，还是人工验证。</p>
-            <p><strong>更好的写法：</strong>如果是在修 bug，优先补一个最小失败测试稳定复现问题，再修改代码并确认测试通过；如果不适合写自动化测试，就给出最小可行的验证步骤和结果。</p>
-          </article>
-          <article class="anti-card">
-            <h3>一直问“还有什么要确认的么”</h3>
-            <p><strong>问题：</strong>容易把大量低价值问题重新抛回来。</p>
-            <p><strong>更好的写法：</strong>如果有需要我确认的问题，请只提关键问题，并带上你的推荐方案和理由。</p>
-          </article>
-          <article class="anti-card">
-            <h3>不写范围，导致越改越多</h3>
-            <p><strong>问题：</strong>容易顺手扩展和重构。</p>
-            <p><strong>更好的写法：</strong>这次只解决当前核心问题，不顺手扩展、不做无关重构；如果发现更大问题，先记录并告诉我，不要直接扩散改动。</p>
-          </article>
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="四个推荐组合续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>再看后两组，它们分别对应修复和复查。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>Bug 修复型</h3>
+              <p>目标：修复【某个 bug】，并避免盲改。约束：优先先复现，再修复；不要为了让测试通过而绕开真实问题。</p>
+            </article>
+            <article class="content-block">
+              <h3>独立复查型</h3>
+              <p>目标：对当前结果做一轮独立复查，而不是重复主流程。输出：指出风险、遗漏、更优建议，以及哪些点已经足够，不需要继续投入。</p>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section class="slide" data-stage="qi" data-title="补充句与收束">
-        <p class="eyebrow">器</p>
-        <h2>通用补充句，可以直接复用在不同任务里</h2>
-        <div class="template-grid wide">
-          <div class="template-block">
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="推荐组合展开">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>四个推荐组合，本质上都是“目标、模式、约束、输出、验证”。</h2>
+          <div class="text-panel">
+            <p><strong>方案讨论型：</strong>必要时先做计划收敛。把真正关键的分歧点提炼出来，不要把低价值问题一起抛给我。</p>
+            <p><strong>直接开发型：</strong>如果任务已经明确，就直接推进。改完后补充【测试 / 最小验证闭环】。</p>
+            <p><strong>Bug 修复型：</strong>一般不需要先做计划收敛，除非背后牵涉较大范围的方案调整。说明 bug 根因、如何复现、代码如何修复。</p>
+            <p><strong>独立复查型：</strong>从【前端 / 架构 / 接口 / 文档】视角重点检查【稳定性 / 可维护性 / 一致性】；聚焦复查，不重复实现。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="常见反模式">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>常见反模式，先看沟通过泛与验证不清。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>只写 `review`</h3>
+              <p>问题：太泛了，容易只做表面检查。</p>
+              <p>更好的写法：按【代码 / UI / 架构 / 文档 / 业务方案】review 的方式复查，优先找出最重要的问题，并按优先级排序。</p>
+            </article>
+            <article class="content-block">
+              <h3>只写 `test`</h3>
+              <p>问题：不知道到底是写测试、跑测试，还是人工验证。</p>
+              <p>更好的写法：如果是在修 bug，优先补一个最小失败测试稳定复现问题，再修改代码并确认测试通过；如果不适合写自动化测试，就给出最小可行的验证步骤和结果。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="常见反模式续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>再看把问题抛回用户，以及范围不断失控。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>一直问“还有什么要确认的么”</h3>
+              <p>问题：容易把大量低价值问题重新抛回来。</p>
+              <p>更好的写法：如果有需要我确认的问题，请只提关键问题，并带上你的推荐方案和理由。</p>
+            </article>
+            <article class="content-block">
+              <h3>不写范围，导致越改越多</h3>
+              <p>问题：容易顺手扩展和重构。</p>
+              <p>更好的写法：这次只解决当前核心问题，不顺手扩展、不做无关重构；如果发现更大问题，先记录并告诉我，不要直接扩散改动。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="反模式续">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>不是所有任务都需要先开计划模式。</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>任务不复杂也机械先做计划</h3>
+              <p>问题：会把本来能直接推进的任务拉长，容易从“解决问题”滑到“讨论问题”。</p>
+            </article>
+            <article class="content-block">
+              <h3>更好的写法</h3>
+              <p>如果任务边界已经明确，就直接推进；只有在目标、路径或边界不清时，再先做计划收敛。</p>
+            </article>
+            <article class="content-block">
+              <h3>提醒</h3>
+              <p>“器”不是新概念区，而是把前面的“道、法、术”直接压成可复用的句子和组合。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="通用补充句">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>通用补充句</h2>
+          <div class="text-panel large-text">
             <p>这次只解决当前核心问题，不顺手扩展、不做无关重构。</p>
             <p>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。</p>
             <p>如果有需要我确认的问题，请只提最关键的 1 到 3 个，并按“问题、选项、利弊、推荐”格式来问。</p>
             <p>先列出你的关键假设和缺失信息；能自行拍板的直接继续，不能拍板的最后集中列出。</p>
           </div>
-          <aside class="template-note">
-            <p>收束一句话：道定方向，法定组织，术定打法，器定复用。</p>
-            <p class="quote">用结构降低偏差，用验证确保结果。</p>
-          </aside>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="不要擅自用临时解">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">器</p>
+          <h2>当你不希望它擅自用临时解时</h2>
+          <div class="content-grid">
+            <article class="content-block">
+              <h3>适用</h3>
+              <p>你更在意方案是否自然、易维护；你不接受它在未确认前直接使用兜底方案。</p>
+            </article>
+            <article class="content-block">
+              <h3>模板</h3>
+              <p>如果过程中出现兜底方案，不要直接采用。先说明更优正解是什么、为什么暂时不可行；只有在确认没有更合适方案后，再向我说明风险、局限和回收方式，得到我确认后再实施。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide closing-slide" data-stage="qi" data-layout="closing" data-title="收束">
+        <div class="hero-target hero-target-closing" data-hero-letter="器" data-hero-tone="closing"></div>
+        <div class="closing-copy">
+          <p class="eyebrow">收束</p>
+          <h2>道定方向，法定组织，术定打法，器定复用。</h2>
+          <p class="subtitle">用结构降低偏差，用验证确保结果。</p>
         </div>
       </section>
     </div>
@@ -351,53 +545,264 @@
 
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
   <script>
-    const stageStartSlides = {
-      dao: 0,
-      fa: 4,
-      shu: 8,
-      qi: 14
-    };
-
     const stageMeta = {
       dao: { label: "道", title: "底层判断" },
       fa: { label: "法", title: "协作组织" },
       shu: { label: "术", title: "局面打法" },
-      qi: { label: "器", title: "直接复用" }
+      qi: { label: "器", title: "拿来即用" }
     };
 
-    const glyphButtons = document.querySelectorAll(".glyph");
-    const stageLabel = document.getElementById("stageLabel");
-    const stageTitle = document.getElementById("stageTitle");
+    const heroOverlay = document.getElementById("heroOverlay");
+    const sealHeroLayer = document.getElementById("sealHeroLayer");
+    const sealHeroOverlays = Array.from(document.querySelectorAll(".seal-hero-overlay"));
+    const sealHeroLetters = ["道", "法", "术", "器"];
+    let sealHeroTimeoutId = null;
 
-    function syncStageHighlight() {
-      const slide = Reveal.getCurrentSlide();
-      const stage = (slide && slide.dataset.stage) || "dao";
-      const isCover = Boolean(slide && slide.classList.contains("cover"));
-      const meta = stageMeta[stage] || stageMeta.dao;
-
-      document.body.dataset.stage = stage;
-      document.body.dataset.cover = isCover ? "true" : "false";
-      stageLabel.textContent = meta.label;
-      stageTitle.textContent = slide?.dataset.title || meta.title;
-
-      glyphButtons.forEach((button) => {
-        button.classList.toggle("is-active", button.dataset.stage === stage);
-      });
+    function getSealHeroNode(slide, letter) {
+      return slide?.querySelector(`[data-hero-letter="${letter}"][data-hero-role]`) || null;
     }
 
-    glyphButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = stageStartSlides[button.dataset.stage];
-        if (typeof target === "number") {
-          Reveal.slide(target);
+    function hideSealHeroOverlays() {
+      if (sealHeroTimeoutId) {
+        clearTimeout(sealHeroTimeoutId);
+        sealHeroTimeoutId = null;
+      }
+
+      sealHeroLayer.classList.remove("is-active");
+      for (const overlay of sealHeroOverlays) {
+        overlay.classList.remove("is-visible");
+      }
+    }
+
+    function playSealHeroTransition(fromSlide, toSlide) {
+      const pairs = sealHeroLetters
+        .map((letter) => {
+          const fromNode = getSealHeroNode(fromSlide, letter);
+          const toNode = getSealHeroNode(toSlide, letter);
+
+          if (!fromNode || !toNode) {
+            return null;
+          }
+
+          return {
+            letter,
+            fromRect: fromNode.getBoundingClientRect(),
+            toRect: toNode.getBoundingClientRect()
+          };
+        })
+        .filter(Boolean);
+
+      if (!pairs.length) {
+        hideSealHeroOverlays();
+        return;
+      }
+
+      sealHeroLayer.classList.add("is-active");
+
+      for (const overlay of sealHeroOverlays) {
+        const pair = pairs.find((item) => item.letter === overlay.dataset.heroLetter);
+        if (!pair) {
+          overlay.classList.remove("is-visible");
+          continue;
+        }
+
+        overlay.textContent = pair.letter;
+        overlay.classList.add("is-visible");
+        overlay.style.left = `${pair.fromRect.left}px`;
+        overlay.style.top = `${pair.fromRect.top}px`;
+        overlay.style.width = `${pair.fromRect.width}px`;
+        overlay.style.height = `${pair.fromRect.height}px`;
+        overlay.style.fontSize = getComputedStyle(getSealHeroNode(fromSlide, pair.letter)).fontSize;
+        overlay.style.lineHeight = getComputedStyle(getSealHeroNode(fromSlide, pair.letter)).lineHeight;
+      }
+
+      requestAnimationFrame(() => {
+        for (const overlay of sealHeroOverlays) {
+          const pair = pairs.find((item) => item.letter === overlay.dataset.heroLetter);
+          if (!pair) {
+            continue;
+          }
+
+          overlay.style.left = `${pair.toRect.left}px`;
+          overlay.style.top = `${pair.toRect.top}px`;
+          overlay.style.width = `${pair.toRect.width}px`;
+          overlay.style.height = `${pair.toRect.height}px`;
+          overlay.style.fontSize = getComputedStyle(getSealHeroNode(toSlide, pair.letter)).fontSize;
+          overlay.style.lineHeight = getComputedStyle(getSealHeroNode(toSlide, pair.letter)).lineHeight;
         }
       });
-    });
+
+      sealHeroTimeoutId = window.setTimeout(() => {
+        hideSealHeroOverlays();
+      }, 760);
+    }
+
+    function playSingleHeroBridge(fromNode, toNode, letter) {
+      if (!fromNode || !toNode || !letter) {
+        hideSealHeroOverlays();
+        return;
+      }
+
+      const overlay = sealHeroOverlays.find((item) => item.dataset.heroLetter === letter);
+      if (!overlay) {
+        hideSealHeroOverlays();
+        return;
+      }
+
+      const fromRect = fromNode.getBoundingClientRect();
+      const toRect = toNode.getBoundingClientRect();
+
+      if (!fromRect.width || !fromRect.height || !toRect.width || !toRect.height) {
+        hideSealHeroOverlays();
+        return;
+      }
+
+      if (sealHeroTimeoutId) {
+        clearTimeout(sealHeroTimeoutId);
+      }
+
+      hideHeroOverlay();
+      sealHeroLayer.classList.add("is-active");
+
+      for (const item of sealHeroOverlays) {
+        item.classList.remove("is-visible");
+      }
+
+      overlay.textContent = letter;
+      overlay.classList.add("is-visible");
+      overlay.style.left = `${fromRect.left}px`;
+      overlay.style.top = `${fromRect.top}px`;
+      overlay.style.width = `${fromRect.width}px`;
+      overlay.style.height = `${fromRect.height}px`;
+      overlay.style.fontSize = getComputedStyle(fromNode).fontSize;
+      overlay.style.lineHeight = getComputedStyle(fromNode).lineHeight;
+
+      requestAnimationFrame(() => {
+        overlay.style.left = `${toRect.left}px`;
+        overlay.style.top = `${toRect.top}px`;
+        overlay.style.width = `${toRect.width}px`;
+        overlay.style.height = `${toRect.height}px`;
+        overlay.style.fontSize = getComputedStyle(toNode).fontSize;
+        overlay.style.lineHeight = getComputedStyle(toNode).lineHeight;
+      });
+
+      sealHeroTimeoutId = window.setTimeout(() => {
+        hideSealHeroOverlays();
+        syncStage();
+      }, 760);
+    }
+
+    function hideHeroOverlay() {
+      heroOverlay.style.opacity = "0";
+      heroOverlay.style.transform = "translate(0, 0) scale(0.7)";
+      heroOverlay.textContent = "";
+      heroOverlay.dataset.tone = "";
+    }
+
+    function updateHeroOverlay(slide) {
+      const target = slide?.querySelector(".hero-target[data-hero-letter]");
+      if (!target) {
+        hideHeroOverlay();
+        return;
+      }
+
+      const rect = target.getBoundingClientRect();
+      if (!rect.width || !rect.height) {
+        hideHeroOverlay();
+        return;
+      }
+
+      heroOverlay.textContent = target.dataset.heroLetter;
+      heroOverlay.dataset.tone = target.dataset.heroTone || "watermark";
+      heroOverlay.style.width = `${rect.width}px`;
+      heroOverlay.style.height = `${rect.height}px`;
+      heroOverlay.style.fontSize = getComputedStyle(target).fontSize;
+      heroOverlay.style.lineHeight = getComputedStyle(target).lineHeight;
+      heroOverlay.style.left = `${rect.left}px`;
+      heroOverlay.style.top = `${rect.top}px`;
+      heroOverlay.style.opacity = "1";
+      heroOverlay.style.transform = "translate(0, 0) scale(1)";
+    }
+
+    function syncStage() {
+      const slide = Reveal.getCurrentSlide();
+      const stage = slide?.dataset.stage || "dao";
+      const layout = slide?.dataset.layout || "content";
+
+      document.body.dataset.stage = stage;
+      document.body.dataset.layout = layout;
+      updateHeroOverlay(slide);
+    }
+
+    function maybePlayHeroBridge(event) {
+      const fromLayout = event.previousSlide?.dataset.layout;
+      const toLayout = event.currentSlide?.dataset.layout;
+      const isCoverToOverview = fromLayout === "cover" && toLayout === "overview";
+      const isOverviewToCover = fromLayout === "overview" && toLayout === "cover";
+      const isOverviewToChapter = fromLayout === "overview" && toLayout === "chapter";
+      const isChapterToOverview = fromLayout === "chapter" && toLayout === "overview";
+
+      if (isCoverToOverview || isOverviewToCover) {
+        playSealHeroTransition(event.previousSlide, event.currentSlide);
+        return;
+      }
+
+      if (isOverviewToChapter || isChapterToOverview) {
+        const letter = event.currentSlide?.dataset.stage === "dao"
+          ? "道"
+          : event.previousSlide?.dataset.stage === "dao"
+            ? "道"
+            : null;
+        const fromNode = isOverviewToChapter
+          ? event.previousSlide?.querySelector('[data-hero-letter="道"][data-hero-role="overview"]')
+          : event.previousSlide?.querySelector('[data-hero-letter="道"][data-hero-role="chapter"]');
+        const toNode = isOverviewToChapter
+          ? event.currentSlide?.querySelector('[data-hero-letter="道"][data-hero-role="chapter"]')
+          : event.currentSlide?.querySelector('[data-hero-letter="道"][data-hero-role="overview"]');
+
+        playSingleHeroBridge(fromNode, toNode, letter);
+        return;
+      }
+
+      hideSealHeroOverlays();
+    }
+
+    const mobileViewport = window.matchMedia("(max-width: 680px)");
+
+    function getRevealLayoutConfig() {
+      if (mobileViewport.matches) {
+        return {
+          width: Math.max(window.innerWidth, 360),
+          height: Math.max(window.innerHeight, 640),
+          margin: 0,
+          minScale: 1,
+          maxScale: 1
+        };
+      }
+
+      return {
+        width: 1366,
+        height: 768,
+        margin: 0.06,
+        minScale: 0.2,
+        maxScale: 2.5
+      };
+    }
+
+    function syncRevealLayout() {
+      if (!Reveal.isReady()) {
+        return;
+      }
+
+      Reveal.configure(getRevealLayoutConfig());
+      Reveal.layout();
+      syncStage();
+    }
+
+    window.addEventListener("resize", syncRevealLayout);
 
     Reveal.initialize({
-      width: 1366,
-      height: 768,
-      margin: 0.06,
+      ...getRevealLayoutConfig(),
       hash: true,
       transition: "fade",
       backgroundTransition: "fade",
@@ -406,8 +811,11 @@
       slideNumber: "c/t"
     });
 
-    Reveal.on("ready", syncStageHighlight);
-    Reveal.on("slidechanged", syncStageHighlight);
+    Reveal.on("ready", syncRevealLayout);
+    Reveal.on("slidechanged", (event) => {
+      syncStage();
+      maybePlayHeroBridge(event);
+    });
   </script>
 </body>
 </html>
