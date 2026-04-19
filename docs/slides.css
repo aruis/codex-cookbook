@@ -16,7 +16,7 @@
   --hero-bridge-duration: 620ms;
   --hero-bridge-easing: cubic-bezier(0.22, 1, 0.36, 1);
   --hero-bridge-opacity-duration: 220ms;
-  --hero-bridge-landing-fade-duration: 120ms;
+  --hero-bridge-landing-fade-duration: 90ms;
 }
 
 *,
