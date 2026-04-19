@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-  <link rel="stylesheet" href="./slides.css?v=20260418-1">
+  <link rel="stylesheet" href="./slides.css?v=20260419-2">
 </head>
 <body data-stage="dao" data-layout="cover">
   <div class="hero-bridge-layer" id="heroBridgeLayer" aria-hidden="true">
@@ -18,6 +18,7 @@
     <div class="hero-bridge-overlay" data-hero-letter="器"></div>
   </div>
   <div class="hero-overlay" id="heroOverlay" aria-hidden="true"></div>
+  <a class="project-link" href="https://github.com/aruis/codex-cookbook" target="_blank" rel="noreferrer">github.com/aruis/codex-cookbook</a>
 
   <div class="reveal">
     <div class="slides">
@@ -31,7 +32,7 @@
         <div class="cover-copy">
           <p class="eyebrow">Codex Cookbook</p>
           <h1>Codex 实战经验谈</h1>
-          <p class="subtitle">一份面向团队与个人开发者的 Codex 实战手册，聚焦高频场景、可复制模板和开箱即用提示词。</p>
+          <p class="subtitle">一份面向团队与个人开发者的 Codex 实战手册，聚焦高频场景、可复制模板和结构化协作骨架。</p>
         </div>
       </section>
 
@@ -58,7 +59,7 @@
           <article class="overview-item">
             <div class="badge"><span class="hero-glyph badge-glyph" data-hero-letter="器" data-hero-role="overview">器</span></div>
             <div>
-              <p>需要马上复制时，直接用模板、反模式和通用补充句。</p>
+              <p>需要马上复制时，直接用模板和通用补充句。</p>
             </div>
           </article>
         </div>
@@ -216,46 +217,15 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11 类局面">
-        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">术</p>
-          <h2>先看全图：前 6 类高频局面</h2>
-          <div class="overview-list compact-grid">
-            <article class="overview-mini"><span>01</span><p>局面未明：先诊断，不急着改</p></article>
-            <article class="overview-mini"><span>02</span><p>主线清晰：直接推进</p></article>
-            <article class="overview-mini"><span>03</span><p>目标偏长期建设：优先长期可维护</p></article>
-            <article class="overview-mini"><span>04</span><p>目标偏短期止血：优先恢复可用</p></article>
-            <article class="overview-mini"><span>05</span><p>不需要兼容过渡：直接硬切</p></article>
-            <article class="overview-mini"><span>06</span><p>连续失败后：先复盘，再继续</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide lecture-slide tight-title" data-stage="shu" data-layout="content" data-title="11 类局面续">
-        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">术</p>
-          <h2>后 5 类，集中在收口、复现、收敛与阶段推进。</h2>
-          <div class="overview-list compact-grid">
-            <article class="overview-mini"><span>07</span><p>临近收口：补验证闭环</p></article>
-            <article class="overview-mini"><span>08</span><p>Bug 场景：先复现，再修复</p></article>
-            <article class="overview-mini"><span>09</span><p>多轮协作：先落文档，再继续推进</p></article>
-            <article class="overview-mini"><span>10</span><p>任务复杂：先收敛计划</p></article>
-            <article class="overview-mini"><span>11</span><p>中型项目：按阶段推进</p></article>
-          </div>
-        </div>
-      </section>
-
       <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="1. 局面未明">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 01</p>
           <h2>局面未明：先诊断，不急着改</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>想看 UI、代码、方案哪里还不够好；任务还比较模糊；想先找问题，再决定是否开工。</p></article>
-            <article class="content-block"><h3>模板</h3><p>先不要急着改。先从【指定维度】系统指出当前存在的问题，并按优先级排序；如果需要，再补充你推荐的修正方向。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>不限定“指定维度”，输出容易发散。任务已经很明确时，没必要先绕回诊断。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>想看 UI、代码、方案哪里还不够好</li><li>任务还比较模糊</li><li>想先找问题，再决定是否开工</li><li>你懒得一开始就把背景讲得很细</li><li>你只是想先看看 AI 能给出什么建议</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>先不要急着改。先从【指定维度】系统指出当前存在的问题，并按优先级排序；如果需要，再补充你推荐的修正方向。</p><p>如果还不想讲太细，也可以先用引导性提问开局，比如：先基于【当前现状 / 目标方向】，给我 3 到 5 条值得优先考虑的建议，并说明各自适用的前提。先从【产品 / 代码 / 方案 / 体验】这些角度看，指出当前最值得注意的问题，以及为什么它们值得优先关注。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>不限定“指定维度”，输出容易发散。</li><li>任务已经很明确时，没必要先绕回诊断。</li><li>真要进入落地时，还是要把目标、约束和范围补齐。</li><li>最好要求它先列出关键假设、缺失信息，并区分哪些判断基于已知事实、哪些只是启发式建议。</li><li>如果输出过泛，先让它指出还缺哪 1 到 3 个最关键的信息，再继续收敛。</li></ul></article>
           </div>
         </div>
       </section>
@@ -266,9 +236,9 @@
           <p class="eyebrow">术 · 02</p>
           <h2>主线清晰：直接推进</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>方向已经清楚；不想频繁来回确认；更关心结果，不想被过程噪音打断。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>方向已经清楚</li><li>不想频繁来回确认</li><li>更关心结果，不想被过程噪音打断</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>你直接按逼近最终目标的思路推进，先读上下文再动手；非关键问题不要频繁停下来，只有你不能拍板的问题再集中问我。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>边界不清时，容易顺手扩散改动，所以最好同时写上范围约束。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>边界不清时，容易顺手扩散改动，所以最好同时写上范围约束。</li></ul></article>
           </div>
         </div>
       </section>
@@ -279,9 +249,9 @@
           <p class="eyebrow">术 · 03</p>
           <h2>目标偏长期建设：优先长期可维护</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>这次改动后面还会继续演进；你担心短期通过掩盖长期问题。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>这次改动后面还会继续演进</li><li>你担心短期通过掩盖长期问题</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>不要为了短期通过牺牲长期可维护性、健壮性和扩展性。优先选择中长期站得住的方案；如果必须做短期方案，请明确标注取舍和后续风险。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>如果业务本身就是一次性或临时方案，要明确告诉它可以接受短期解。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>如果业务本身就是一次性或临时方案，要明确告诉它可以接受短期解。</li></ul></article>
           </div>
         </div>
       </section>
@@ -292,9 +262,9 @@
           <p class="eyebrow">术 · 04</p>
           <h2>目标偏短期止血：优先恢复可用</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>线上问题需要先恢复；当前目标是快速止损，而不是一次性彻底治理；你可以接受阶段性技术债，但不能接受继续失效。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>线上问题需要先恢复</li><li>当前目标是快速止损，而不是一次性彻底治理</li><li>你可以接受阶段性技术债，但不能接受继续失效</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>这次以短期止血为主，优先恢复可用和控制影响面，不追求一次性彻底治理；如果用了临时方案，请标注后续治理项。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>如果当前不是应急场景，就不要用止血思路替代长期建设。即使是止血，也要说明遗留风险和后续治理事项。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>如果当前不是应急场景，就不要用止血思路替代长期建设。</li><li>即使是止血，也要说明遗留风险和后续治理事项。</li></ul></article>
           </div>
         </div>
       </section>
@@ -305,9 +275,9 @@
           <p class="eyebrow">术 · 05</p>
           <h2>不需要兼容过渡：直接硬切</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>这次改动会破坏存量契约；你明确知道不需要兼容层、双写、灰度适配或过渡方案；你希望直接切到目标状态。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>这次改动会破坏存量契约</li><li>你明确知道不需要兼容层、双写、灰度适配或过渡方案</li><li>你希望直接切到目标状态</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。如果会破坏存量契约，请直接同步调整调用方和相关实现。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>如果真实场景仍然需要平滑迁移、灰度发布或跨版本兼容，就不要强行硬切。决定硬切前，要确认受影响范围和调用方是可控的。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>如果真实场景仍然需要平滑迁移、灰度发布或跨版本兼容，就不要强行硬切。</li><li>决定硬切前，要确认受影响范围和调用方是可控的。</li></ul></article>
           </div>
         </div>
       </section>
@@ -317,88 +287,108 @@
         <div class="content-shell">
           <p class="eyebrow">术 · 06</p>
           <h2>连续失败后：先复盘，再继续</h2>
+          <p class="quote">如果问题已经连续失败、或者你怀疑方向本身不对，用这一节；如果不是失败，而是链路越走越深、开始怀疑继续投入是否还划算，用下一节。</p>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>已经反复试了多轮；怀疑方向本身不对；需要重新对齐目标、路径和停点。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>已经反复试了多轮</li><li>怀疑方向本身不对</li><li>需要重新对齐目标、路径和停点</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>这件事已经反复失败多次。请先判断是目标错、路径错，还是执行细节错，并给出下一轮最值得尝试的方案，以及建议停掉哪些低收益动作。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>如果不要求“下一轮方案”，很容易停留在空泛复盘。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>如果不要求“下一轮方案”，很容易停留在空泛复盘。</li></ul></article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="7. 补验证闭环">
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="7. 评估停点">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 07</p>
-          <h2>临近收口：补验证闭环</h2>
+          <h2>链路越走越深：先评估停点，再决定是否继续</h2>
+          <p class="quote">如果问题没有彻底失败，但你开始怀疑继续深挖的投入产出比是否还成立，用这一节；如果已经连续失败、或者怀疑方向本身不对，优先回到上一节先复盘。</p>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>不想只停留在“代码已改”；希望它证明这次改动真的有效；希望它先给出验收标准，再实现和验证。</p></article>
-            <article class="content-block"><h3>模板</h3><p>写出这次完成的验收标准，再补充必要测试或验证步骤，证明这次修改确实解决了问题，而不是靠硬压、绕过或碰巧通过。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>不要把验收标准写成空话，验证步骤要能真正证明问题已解决。不要为了补验证顺手扩大改动范围。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>一条分支链路已经展开了多轮</li><li>还没彻底失败，但收益开始变得不确定</li><li>你怀疑继续深挖的投入产出比已经下降</li><li>你想判断现在更适合继续、收口、换路还是暂停</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>先不要继续顺着当前链路往下做。先评估一下这条链路到目前为止的投入产出比：已经获得了什么、还缺什么、继续投入最可能带来什么收益、主要风险和成本是什么。然后判断现在更适合继续深挖、先收口、切换方向，还是在当前停住，并说明理由。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>不要每推进一步都机械做停点评估，否则会打断正常执行。</li><li>这更适合链路已经明显拉长、或者你开始怀疑继续投入是否还划算的时候。</li><li>重点不是复述过程，而是判断“现在最合适的动作”。</li><li>如果目标本身还清楚、链路也还在稳定产出，就没必要过早收口。</li></ul></article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="8. 先复现">
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="8. 补验证闭环">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 08</p>
-          <h2>Bug 场景：先复现，再修复</h2>
+          <h2>临近收口：补验证闭环</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>正在修 bug；希望先锁定问题，再改代码；不希望修复过程变成盲改。</p></article>
-            <article class="content-block"><h3>模板</h3><p>先不要直接改代码。优先补一个最小失败测试来稳定复现这个 bug；如果不适合写自动化测试，就先给出最小可行复现和验证步骤。确认问题被稳定复现后，再修改代码并检查没有引入误伤。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>不要为了让测试通过而把测试写得过宽或偏离真实 bug。测试要尽量最小化，只锁定这次问题。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>不想只停留在“代码已改”</li><li>希望它证明这次改动真的有效</li><li>希望它先给出验收标准，再实现和验证</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>写出这次完成的验收标准，再补充必要测试或验证步骤，证明这次修改确实解决了问题，而不是靠硬压、绕过或碰巧通过。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>不要把验收标准写成空话，验证步骤要能真正证明问题已解决。</li><li>不要为了补验证顺手扩大改动范围。</li></ul></article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="9. 先落文档">
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="9. 先复现">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 09</p>
-          <h2>多轮协作：先落文档，再继续推进</h2>
+          <h2>Bug 场景：先复现，再修复</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>任务会跨多轮对话持续推进；目标、方案、进度已经开始变复杂；你担心上下文压缩后丢失关键共识。</p></article>
-            <article class="content-block"><h3>模板</h3><p>这件事会跨多轮推进。请先把当前目标、关键约束、已达成结论、待决问题和下一步计划整理成文档或结构化记录；后续推进过程中持续更新，不要只依赖会话上下文。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>很小的一次性任务，不需要为了形式而额外维护文档。文档不是一次性快照，后续关键变化要同步更新。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>正在修 bug</li><li>希望先锁定问题，再改代码</li><li>不希望修复过程变成盲改</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>先不要直接改代码。优先补一个最小失败测试来稳定复现这个 bug；如果不适合写自动化测试，就先给出最小可行复现和验证步骤。确认问题被稳定复现后，再修改代码并检查没有引入误伤。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>不要为了让测试通过而把测试写得过宽或偏离真实 bug。</li><li>测试要尽量最小化，只锁定这次问题。</li></ul></article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide tight-title" data-stage="shu" data-layout="content" data-title="10. 先收敛计划">
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="10. 先落文档">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 10</p>
+          <h2>多轮协作：先落文档，再继续推进</h2>
+          <div class="content-grid">
+            <article class="content-block list-block"><h3>适用</h3><ul><li>任务会跨多轮对话持续推进</li><li>目标、方案、进度已经开始变复杂</li><li>你担心上下文压缩后丢失关键共识</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>这件事会跨多轮推进。请先把当前目标、关键约束、已达成结论、待决问题和下一步计划整理成文档或结构化记录；后续推进过程中持续更新，不要只依赖会话上下文。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>很小的一次性任务，不需要为了形式而额外维护文档。</li><li>文档不是一次性快照，后续关键变化要同步更新。</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide tight-title" data-stage="shu" data-layout="content" data-title="11. 先收敛计划">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 11</p>
           <h2>任务复杂：先收敛计划（推荐开启计划模式）</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>任务目标还不够清楚；需求里有多个分支或决策点；你希望先讨论方案、拆步骤、确认边界，再进入实现。</p></article>
+            <article class="content-block list-block"><h3>适用</h3><ul><li>任务目标还不够清楚</li><li>需求里有多个分支或决策点</li><li>你希望先讨论方案、拆步骤、确认边界，再进入实现</li></ul></article>
             <article class="content-block"><h3>模板</h3><p>先不要急着落代码。先把目标、约束、范围边界、关键分歧点、推荐路径和执行步骤梳理清楚；如果有需要我确认的地方，按优先级逐条拿出来。</p></article>
-            <article class="content-block"><h3>误用边界</h3><p>任务已经很直接时，不要机械开启计划模式，否则会拖慢推进。计划模式适合收敛问题和确认路径，不适合代替实际落地。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>任务已经很直接时，不要机械开启计划模式，否则会拖慢推进。</li><li>计划模式适合收敛问题和确认路径，不适合代替实际落地。</li></ul></article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11. 按阶段推进">
+      <section class="slide lecture-slide stage-flow-slide" data-stage="shu" data-layout="content" data-title="12. 按阶段推进">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">术 · 11</p>
+        <div class="content-shell stage-flow-shell">
+          <p class="eyebrow">术 · 12</p>
           <h2>中型项目：按阶段推进</h2>
           <div class="content-grid">
-            <article class="content-block"><h3>适用</h3><p>在做中型项目或独立模块；业务和场景需要先对齐，再进入实现；你希望先把文档、边界和开发路径收敛清楚。</p></article>
-            <article class="content-block"><h3>推荐流程</h3><p>先对齐业务目标、场景边界和不做项，不急着落代码。文档未定时，先做计划收敛，把关键共识定下来。文档基本定下来后，再用计划模式查漏补缺。</p></article>
-            <article class="content-block"><h3>推荐模板</h3><p>这是一个中型项目 / 模块。先不要直接开始实现。第一步，先把业务目标、场景边界、约束和不做项收敛清楚。第二步，文档基本定下来后，再用计划模式查漏补缺。</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="按阶段推进续">
-        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">术 · 11</p>
-          <h2>进入执行阶段后，默认直接推进。</h2>
-          <div class="content-grid">
-            <article class="content-block"><h3>推荐流程续</h3><p>进入执行阶段后，默认直接推进，不要把计划模式常驻开启。只有在阶段切换、明显偏航、反复失败或需要重新收敛时，再回到计划模式。关键阶段完成后，再做一次独立复查。</p></article>
-            <article class="content-block"><h3>推荐模板续</h3><p>第三步，进入执行阶段后默认直接推进；只有在阶段切换、偏航或卡住时，再回到计划收敛。第四步，关键阶段结束后，再补一轮独立复查。</p></article>
-            <article class="content-block"><h3>说明</h3><p>并行代理或辅助执行更适合复查、补充视角和并行审视，不适合承接必须立刻解决的主线任务。</p></article>
+            <article class="content-block list-block">
+              <h3>适用</h3>
+              <ul>
+                <li>在做中型项目或独立模块</li>
+                <li>业务和场景需要先对齐，再进入实现</li>
+                <li>你希望先把文档、边界和开发路径收敛清楚</li>
+              </ul>
+            </article>
+            <article class="content-block list-block ordered-block">
+              <h3>推荐流程</h3>
+              <ol>
+                <li>先对齐业务目标、场景边界和不做项，不急着落代码。</li>
+                <li>文档未定时，先做计划收敛，把关键共识定下来。</li>
+                <li>文档基本定下来后，再用计划模式查漏补缺，整理出可直接推进的完整计划。</li>
+                <li>如果方案刚收敛完、你又担心有遗漏，可以先加一个可选复核步骤，让辅助代理或独立视角先审一遍方案，再决定是否进入执行。</li>
+                <li>进入执行阶段后，默认直接推进，不要把计划模式常驻开启。</li>
+                <li>只有在阶段切换、明显偏航、反复失败或需要重新收敛时，再回到计划模式。</li>
+                <li>关键阶段完成后，再做一次独立复查。</li>
+              </ol>
+              <p class="stage-flow-note"><strong>说明：</strong>并行代理或辅助执行更适合复查、补充视角和并行审视，不适合承接必须立刻解决的主线任务。</p>
+            </article>
           </div>
         </div>
       </section>
@@ -408,7 +398,7 @@
         <div class="chapter-copy">
           <p class="eyebrow">Qi</p>
           <h2>最后讲“拿来即用”</h2>
-          <p class="lead">这一层解决的是“拿来即用”。需要马上复制时，直接用模板、反模式和通用补充句。</p>
+          <p class="lead">这一层解决的是“拿来即用”。需要马上复制时，直接用模板和通用补充句。</p>
         </div>
       </section>
 
@@ -487,68 +477,6 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="常见反模式">
-        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">器</p>
-          <h2>常见反模式，先看沟通过泛与验证不清。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>只写 `review`</h3>
-              <p>问题：太泛了，容易只做表面检查。</p>
-              <p>更好的写法：按【代码 / UI / 架构 / 文档 / 业务方案】review 的方式复查，优先找出最重要的问题，并按优先级排序。</p>
-            </article>
-            <article class="content-block">
-              <h3>只写 `test`</h3>
-              <p>问题：不知道到底是写测试、跑测试，还是人工验证。</p>
-              <p>更好的写法：如果是在修 bug，优先补一个最小失败测试稳定复现问题，再修改代码并确认测试通过；如果不适合写自动化测试，就给出最小可行的验证步骤和结果。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="常见反模式续">
-        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">器</p>
-          <h2>再看把问题抛回用户，以及范围不断失控。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>一直问“还有什么要确认的么”</h3>
-              <p>问题：容易把大量低价值问题重新抛回来。</p>
-              <p>更好的写法：如果有需要我确认的问题，请只提关键问题，并带上你的推荐方案和理由。</p>
-            </article>
-            <article class="content-block">
-              <h3>不写范围，导致越改越多</h3>
-              <p>问题：容易顺手扩展和重构。</p>
-              <p>更好的写法：这次只解决当前核心问题，不顺手扩展、不做无关重构；如果发现更大问题，先记录并告诉我，不要直接扩散改动。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="反模式续">
-        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">器</p>
-          <h2>不是所有任务都需要先开计划模式。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>任务不复杂也机械先做计划</h3>
-              <p>问题：会把本来能直接推进的任务拉长，容易从“解决问题”滑到“讨论问题”。</p>
-            </article>
-            <article class="content-block">
-              <h3>更好的写法</h3>
-              <p>如果任务边界已经明确，就直接推进；只有在目标、路径或边界不清时，再先做计划收敛。</p>
-            </article>
-            <article class="content-block">
-              <h3>提醒</h3>
-              <p>“器”不是新概念区，而是把前面的“道、法、术”直接压成可复用的句子和组合。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="通用补充句">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
         <div class="content-shell">
@@ -581,11 +509,15 @@
         </div>
       </section>
 
-      <section class="slide closing-slide" data-stage="qi" data-layout="closing" data-title="收束">
-        <div class="hero-target hero-target-closing" data-hero-letter="器" data-hero-tone="closing"></div>
-        <div class="closing-copy">
-          <p class="eyebrow">收束</p>
-          <h2>道定方向，法定组织，术定打法，器定复用。</h2>
+      <section class="slide cover-slide closing-slide" data-stage="qi" data-layout="closing" data-title="收束">
+        <div class="seal-mark" aria-label="道法术器印章">
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="道" data-hero-role="closing">道</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="法" data-hero-role="closing">法</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="术" data-hero-role="closing">术</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="器" data-hero-role="closing">器</span></div>
+        </div>
+        <div class="cover-copy">
+          <h1>道引方向 法定组织<br>术讲打法 器可复用</h1>
           <p class="subtitle">用结构降低偏差，用验证确保结果。</p>
         </div>
       </section>

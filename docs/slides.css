@@ -78,6 +78,25 @@ body::after {
   pointer-events: none;
 }
 
+.project-link {
+  position: fixed;
+  left: 28px;
+  bottom: 20px;
+  z-index: 5;
+  font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: rgba(53, 41, 30, 0.72);
+  text-decoration: none;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  color: rgba(143, 65, 39, 0.92);
+  text-decoration: underline;
+}
+
 .reveal {
   position: relative;
   z-index: 2;
@@ -494,10 +513,15 @@ body::after {
   z-index: 1;
   display: grid;
   gap: 0.32em;
-  max-width: 16em;
-  width: min(100%, 16em);
+  max-width: 34em;
+  width: min(100%, 34em);
   justify-items: center;
   text-align: center;
+}
+
+.chapter-copy h2 {
+  max-width: none;
+  white-space: nowrap;
 }
 
 .lecture-slide {
@@ -528,6 +552,10 @@ body::after {
 
 .lecture-slide.tight-title .content-shell {
   width: min(100%, 33em);
+}
+
+.lecture-slide .content-shell:has(.text-panel) {
+  width: min(100%, 37.2em);
 }
 
 .lecture-slide.tight-title h2 {
@@ -562,6 +590,47 @@ body::after {
 
 .content-block p + p {
   margin-top: 0.18em;
+}
+
+.list-block {
+  gap: 0.2em;
+}
+
+.list-block ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 0.14em;
+}
+
+.list-block ol {
+  margin: 0;
+  padding-left: 1.28em;
+  display: grid;
+  gap: 0.14em;
+}
+
+.list-block li {
+  margin: 0;
+  padding-left: 0.08em;
+}
+
+.list-block li::marker {
+  color: rgba(176, 121, 101, 0.9);
+}
+
+.stage-flow-shell {
+  width: min(100%, 35.8em) !important;
+}
+
+.ordered-block {
+  align-content: start;
+}
+
+.stage-flow-note {
+  margin-top: 0.18em;
+  padding-top: 0.18em;
+  border-top: 1px solid rgba(91, 62, 32, 0.08);
 }
 
 .principles-shell {
@@ -604,8 +673,8 @@ body::after {
 }
 
 .principle-trigger h3 {
-  font-size: 1.04em;
-  line-height: 1.18;
+  font-size: 0.988em;
+  line-height: 1.34;
 }
 
 .principle-panel {
@@ -618,8 +687,8 @@ body::after {
 }
 
 .principle-panel p {
-  font-size: 0.98em;
-  line-height: 1.42;
+  font-size: 1.092em;
+  line-height: 1.58;
   color: var(--ink);
 }
 
@@ -639,8 +708,8 @@ body::after {
 }
 
 .recipe-panel p {
-  font-size: 0.964em;
-  line-height: 1.5;
+  font-size: 1.092em;
+  line-height: 1.58;
 }
 
 .recipe-panel strong {
@@ -690,20 +759,31 @@ body::after {
 }
 
 .closing-slide {
-  justify-content: center;
-  align-items: center;
+  position: absolute !important;
+  gap: 0.42em;
+}
+
+.closing-slide .cover-copy {
+  width: min(100%, 24em);
+  justify-items: center;
   text-align: center;
 }
 
-.closing-copy {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: 0.3em;
-  width: min(100%, 19em);
-  margin-inline: auto;
-  justify-items: center;
-  text-align: center;
+.closing-slide .eyebrow,
+.closing-slide h1 {
+  width: 100% !important;
+  max-width: 100% !important;
+  text-align: center !important;
+}
+
+.closing-slide h1 {
+  white-space: nowrap !important;
+  text-wrap: nowrap !important;
+  line-height: 1.08;
+}
+
+.closing-slide .subtitle {
+  max-width: 18em;
 }
 
 .reveal .controls {
@@ -787,6 +867,14 @@ body::after {
 @media (max-width: 680px) {
   body::after {
     inset: 12px;
+  }
+
+  .project-link {
+    left: 12px;
+    bottom: 14px;
+    max-width: 56vw;
+    font-size: 22px;
+    letter-spacing: 0.02em;
   }
 
   .reveal {
