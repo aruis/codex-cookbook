@@ -513,6 +513,29 @@ body::after {
   margin-inline: auto;
 }
 
+.lecture-slide .content-shell {
+  width: min(100%, 31em);
+}
+
+.lecture-slide .eyebrow {
+  display: none;
+}
+
+.lecture-slide h2 {
+  max-width: none;
+  text-wrap: balance;
+}
+
+.lecture-slide.tight-title .content-shell {
+  width: min(100%, 33em);
+}
+
+.lecture-slide.tight-title h2 {
+  font-size: 1.68em;
+  line-height: 1.12;
+  letter-spacing: 0;
+}
+
 .slim-shell {
   width: min(100%, 21em);
 }
@@ -541,10 +564,87 @@ body::after {
   margin-top: 0.18em;
 }
 
+.principles-shell {
+  width: min(100%, 34em) !important;
+  gap: 0.2em;
+}
+
+.principles-grid {
+  grid-template-columns: 1fr;
+  gap: 0.14em;
+}
+
+.principle-line {
+  display: grid;
+  gap: 0;
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.76), rgba(255, 251, 245, 0.44));
+  border: 1px solid rgba(91, 62, 32, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.principle-trigger {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 0.14em;
+  width: 100%;
+  padding: 0.26em 0.3em;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+
+.principle-trigger span {
+  font-size: 0.6em;
+  letter-spacing: 0.08em;
+  color: rgba(143, 65, 39, 0.72);
+}
+
+.principle-trigger h3 {
+  font-size: 1.04em;
+  line-height: 1.18;
+}
+
+.principle-panel {
+  display: none;
+  padding: 0 0.34em 0.28em 56px;
+}
+
+.principle-line.is-open .principle-panel {
+  display: block;
+}
+
+.principle-panel p {
+  font-size: 0.98em;
+  line-height: 1.42;
+  color: var(--ink);
+}
+
 .text-panel {
   display: grid;
   gap: 0.3em;
   padding: 0.46em 0.48em;
+}
+
+.recipe-shell {
+  width: min(100%, 30.8em);
+}
+
+.recipe-panel {
+  gap: 0.24em;
+  padding: 0.42em 0.46em;
+}
+
+.recipe-panel p {
+  font-size: 0.964em;
+  line-height: 1.5;
+}
+
+.recipe-panel strong {
+  color: var(--ink);
 }
 
 .large-text p {

@@ -73,7 +73,7 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="dao" data-layout="content" data-title="三个底层判断">
+      <section class="slide lecture-slide tight-title" data-stage="dao" data-layout="content" data-title="三个底层判断">
         <div class="hero-target hero-target-watermark" data-hero-letter="道" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">道</p>
@@ -104,55 +104,79 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="七条组织原则">
+      <section class="slide lecture-slide tight-title" data-stage="fa" data-layout="content" data-title="七条组织原则">
         <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
-        <div class="content-shell">
+        <div class="content-shell principles-shell">
           <p class="eyebrow">法</p>
-          <h2>常见任务里，建议先按下面 7 条来组织你和 Codex 的配合。</h2>
-          <div class="content-grid two-col">
-            <article class="content-block">
-              <h3>01. 先收敛，再展开</h3>
-              <p>目标、边界、路径不清时，先收敛问题。</p>
+          <div class="content-grid principles-grid">
+            <article class="principle-line is-open">
+              <button class="principle-trigger" type="button" aria-expanded="true">
+                <span>01</span>
+                <h3>先收敛，再展开</h3>
+              </button>
+              <div class="principle-panel">
+                <p>目标、边界、路径不清时，先收敛问题。</p>
+              </div>
             </article>
-            <article class="content-block">
-              <h3>02. 明确任务的时间尺度</h3>
-              <p>长期建设、阶段性过渡、短期止血，是三种不同任务，方案选择标准也不同。</p>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>02</span>
+                <h3>明确任务的时间尺度</h3>
+              </button>
+              <div class="principle-panel">
+                <p>长期建设、阶段性过渡、短期止血，是三种不同任务，方案选择标准也不同。</p>
+              </div>
             </article>
-            <article class="content-block">
-              <h3>03. 根据阶段定模式</h3>
-              <p>方案期适合讨论和计划，问题模糊时适合先诊断，修 bug 适合先复现，主线清晰后再进入执行，阶段结束后再独立复查。</p>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>03</span>
+                <h3>根据阶段定模式</h3>
+              </button>
+              <div class="principle-panel">
+                <p>方案期适合讨论和计划，问题模糊时适合先诊断，修 bug 适合先复现，主线清晰后再进入执行，阶段结束后再独立复查。</p>
+              </div>
+            </article>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>04</span>
+                <h3>用结构化表达降低偏差</h3>
+              </button>
+              <div class="principle-panel">
+                <p>不要想到什么说什么，尽量把请求组织成稳定结构，让目标、约束、输出和验证标准都清楚可读。</p>
+              </div>
+            </article>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>05</span>
+                <h3>用文档沉淀阶段共识</h3>
+              </button>
+              <div class="principle-panel">
+                <p>多轮协作不要只靠会话记忆，目标、方案、决策、进度和风险要尽早外化，并持续更新。</p>
+              </div>
+            </article>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>06</span>
+                <h3>用验证闭环约束结果</h3>
+              </button>
+              <div class="principle-panel">
+                <p>不要只停在“已经改了”，要用测试、验收标准或最小验证步骤确认结果真的成立。</p>
+              </div>
+            </article>
+            <article class="principle-line">
+              <button class="principle-trigger" type="button" aria-expanded="false">
+                <span>07</span>
+                <h3>兜底方案必须显式确认</h3>
+              </button>
+              <div class="principle-panel">
+                <p>准备采用临时解前，先说明更优路径为什么暂时不可行；实施前先确认，实施后再验证并说明风险与回收方式。</p>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="七条组织原则续">
-        <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">法</p>
-          <h2>后 4 条，决定协作是否稳、是否能持续推进。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>04. 用结构化表达降低偏差</h3>
-              <p>不要想到什么说什么，尽量把请求组织成稳定结构，让目标、约束、输出和验证标准都清楚可读。</p>
-            </article>
-            <article class="content-block">
-              <h3>05. 用文档沉淀阶段共识</h3>
-              <p>多轮协作不要只靠会话记忆，目标、方案、决策、进度和风险要尽早外化，并持续更新。</p>
-            </article>
-            <article class="content-block">
-              <h3>06. 用验证闭环约束结果</h3>
-              <p>不要只停在“已经改了”，要用测试、验收标准或最小验证步骤确认结果真的成立。</p>
-            </article>
-            <article class="content-block">
-              <h3>07. 兜底方案必须显式确认</h3>
-              <p>准备采用临时解前，先说明更优路径为什么暂时不可行；实施前先确认，实施后再验证并说明风险与回收方式。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="slide lecture-slide" data-stage="fa" data-layout="content" data-title="最小闭环">
+      <section class="slide lecture-slide tight-title" data-stage="fa" data-layout="content" data-title="最小闭环">
         <div class="hero-target hero-target-watermark" data-hero-letter="法" data-hero-tone="watermark"></div>
         <div class="content-shell slim-shell">
           <p class="eyebrow">法</p>
@@ -208,7 +232,7 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="11 类局面续">
+      <section class="slide lecture-slide tight-title" data-stage="shu" data-layout="content" data-title="11 类局面续">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术</p>
@@ -340,7 +364,7 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="10. 先收敛计划">
+      <section class="slide lecture-slide tight-title" data-stage="shu" data-layout="content" data-title="10. 先收敛计划">
         <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">术 · 10</p>
@@ -388,57 +412,82 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="四个推荐组合">
+      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="四个推荐组合">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">器</p>
-          <h2>四个推荐组合，先看前两组。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>方案讨论型</h3>
-              <p>目标：先收敛【某个方案 / 某个模块怎么做】，先不急着写代码。输出：按“问题、选项、利弊、推荐”格式整理，我来拍板。</p>
-            </article>
-            <article class="content-block">
-              <h3>直接开发型</h3>
-              <p>目标：解决【具体问题】，并尽量逼近【最终可用方案】。约束：先读上下文再动手；非关键问题不要频繁停下来；这次只解决【当前核心问题】。</p>
-            </article>
+          <h2>四个推荐组合，建议先按这条顺序来用。</h2>
+          <div class="overview-list compact-grid">
+            <article class="overview-mini"><span>01</span><p>方案讨论型：先收敛关键分歧，再拍板</p></article>
+            <article class="overview-mini"><span>02</span><p>直接开发型：主线明确后，直接推进</p></article>
+            <article class="overview-mini"><span>03</span><p>Bug 修复型：先复现，再修复</p></article>
+            <article class="overview-mini"><span>04</span><p>独立复查型：主流程完成后，再独立审视</p></article>
+          </div>
+          <p class="quote">这四组都不是零散句子，而是把“目标、模式、约束、输出、验证”压成可直接复制的完整骨架。</p>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="方案讨论型">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell recipe-shell">
+          <p class="eyebrow">器 · 组合 01</p>
+          <h2>方案讨论型：先收敛关键分歧，再拍板。</h2>
+          <div class="text-panel recipe-panel">
+            <p><strong>目标：</strong>先收敛【某个方案 / 某个模块怎么做】，先不急着写代码。</p>
+            <p><strong>模式：</strong>必要时先做计划收敛。</p>
+            <p><strong>约束：</strong>把真正关键的分歧点提炼出来，不要把低价值问题一起抛给我。</p>
+            <p><strong>输出：</strong>按“问题、选项、利弊、推荐”格式整理，我来拍板。</p>
+            <p><strong>验证：</strong>明确这次准备解决什么、不解决什么，以及为什么。</p>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="四个推荐组合续">
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="直接开发型">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">器</p>
-          <h2>再看后两组，它们分别对应修复和复查。</h2>
-          <div class="content-grid">
-            <article class="content-block">
-              <h3>Bug 修复型</h3>
-              <p>目标：修复【某个 bug】，并避免盲改。约束：优先先复现，再修复；不要为了让测试通过而绕开真实问题。</p>
-            </article>
-            <article class="content-block">
-              <h3>独立复查型</h3>
-              <p>目标：对当前结果做一轮独立复查，而不是重复主流程。输出：指出风险、遗漏、更优建议，以及哪些点已经足够，不需要继续投入。</p>
-            </article>
+        <div class="content-shell recipe-shell">
+          <p class="eyebrow">器 · 组合 02</p>
+          <h2>直接开发型：主线明确后，直接推进。</h2>
+          <div class="text-panel recipe-panel">
+            <p><strong>目标：</strong>解决【具体问题】，并尽量逼近【最终可用方案】。</p>
+            <p><strong>模式：</strong>如果任务已经明确，就直接推进。</p>
+            <p><strong>约束：</strong>先读上下文再动手；非关键问题不要频繁停下来；这次只解决【当前核心问题】，不顺手扩展到【无关范围】。</p>
+            <p><strong>输出：</strong>先给问题判断和推荐方案，再直接落地；如果有必须我拍板的问题，按“问题、选项、利弊、推荐”来问我。</p>
+            <p><strong>验证：</strong>改完后补充【测试 / 最小验证闭环】。</p>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="推荐组合展开">
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="Bug 修复型">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
-        <div class="content-shell">
-          <p class="eyebrow">器</p>
-          <h2>四个推荐组合，本质上都是“目标、模式、约束、输出、验证”。</h2>
-          <div class="text-panel">
-            <p><strong>方案讨论型：</strong>必要时先做计划收敛。把真正关键的分歧点提炼出来，不要把低价值问题一起抛给我。</p>
-            <p><strong>直接开发型：</strong>如果任务已经明确，就直接推进。改完后补充【测试 / 最小验证闭环】。</p>
-            <p><strong>Bug 修复型：</strong>一般不需要先做计划收敛，除非背后牵涉较大范围的方案调整。说明 bug 根因、如何复现、代码如何修复。</p>
-            <p><strong>独立复查型：</strong>从【前端 / 架构 / 接口 / 文档】视角重点检查【稳定性 / 可维护性 / 一致性】；聚焦复查，不重复实现。</p>
+        <div class="content-shell recipe-shell">
+          <p class="eyebrow">器 · 组合 03</p>
+          <h2>Bug 修复型：先复现，再修复。</h2>
+          <div class="text-panel recipe-panel">
+            <p><strong>目标：</strong>修复【某个 bug】，并避免盲改。</p>
+            <p><strong>模式：</strong>一般不需要先做计划收敛，除非背后牵涉较大范围的方案调整。</p>
+            <p><strong>约束：</strong>优先先复现，再修复；不要为了让测试通过而绕开真实问题。</p>
+            <p><strong>输出：</strong>说明 bug 根因、如何复现、代码如何修复。</p>
+            <p><strong>验证：</strong>确认问题先被稳定复现，再确认修复后通过，并补充必要的回归验证。</p>
           </div>
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="常见反模式">
+      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="独立复查型">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell recipe-shell">
+          <p class="eyebrow">器 · 组合 04</p>
+          <h2>独立复查型：主流程完成后，再独立审视。</h2>
+          <div class="text-panel recipe-panel">
+            <p><strong>目标：</strong>对当前结果做一轮独立复查，而不是重复主流程。</p>
+            <p><strong>模式：</strong>适合在主流程基本完成后使用。</p>
+            <p><strong>约束：</strong>从【前端 / 架构 / 接口 / 文档】视角重点检查【稳定性 / 可维护性 / 一致性】；聚焦复查，不重复实现。</p>
+            <p><strong>输出：</strong>指出风险、遗漏、更优建议，以及哪些点已经足够，不需要继续投入。</p>
+            <p><strong>验证：</strong>把“必须改”和“可选优化”分开列出。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="常见反模式">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">器</p>
@@ -458,7 +507,7 @@
         </div>
       </section>
 
-      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="常见反模式续">
+      <section class="slide lecture-slide tight-title" data-stage="qi" data-layout="content" data-title="常见反模式续">
         <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
         <div class="content-shell">
           <p class="eyebrow">器</p>
@@ -1155,6 +1204,33 @@
       syncStage();
     }
 
+    function setupPrinciplesAccordion() {
+      for (const grid of document.querySelectorAll(".principles-grid")) {
+        grid.addEventListener("click", (event) => {
+          const trigger = event.target.closest(".principle-trigger");
+          if (!trigger) {
+            return;
+          }
+
+          const currentItem = trigger.closest(".principle-line");
+          if (!currentItem) {
+            return;
+          }
+
+          const shouldOpen = !currentItem.classList.contains("is-open");
+          for (const item of grid.querySelectorAll(".principle-line")) {
+            item.classList.toggle("is-open", item === currentItem && shouldOpen);
+            const itemTrigger = item.querySelector(".principle-trigger");
+            if (itemTrigger) {
+              itemTrigger.setAttribute("aria-expanded", item.classList.contains("is-open") ? "true" : "false");
+            }
+          }
+
+          Reveal.layout();
+        });
+      }
+    }
+
     window.addEventListener("resize", syncRevealLayout);
 
     Reveal.initialize({
@@ -1167,7 +1243,10 @@
       slideNumber: "c/t"
     });
 
-    Reveal.on("ready", syncRevealLayout);
+    Reveal.on("ready", () => {
+      setupPrinciplesAccordion();
+      syncRevealLayout();
+    });
     Reveal.on("slidechanged", (event) => {
       if (maybePlayHeroBridge(event)) {
         return;
