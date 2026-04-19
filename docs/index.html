@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="./slides.css?v=20260418-1">
 </head>
 <body data-stage="dao" data-layout="cover">
-  <div class="seal-hero-layer" id="sealHeroLayer" aria-hidden="true">
-    <div class="seal-hero-overlay" data-hero-letter="道"></div>
-    <div class="seal-hero-overlay" data-hero-letter="法"></div>
-    <div class="seal-hero-overlay" data-hero-letter="术"></div>
-    <div class="seal-hero-overlay" data-hero-letter="器"></div>
+  <div class="hero-bridge-layer" id="heroBridgeLayer" aria-hidden="true">
+    <div class="hero-bridge-overlay" data-hero-letter="道"></div>
+    <div class="hero-bridge-overlay" data-hero-letter="法"></div>
+    <div class="hero-bridge-overlay" data-hero-letter="术"></div>
+    <div class="hero-bridge-overlay" data-hero-letter="器"></div>
   </div>
   <div class="hero-overlay" id="heroOverlay" aria-hidden="true"></div>
 
@@ -23,10 +23,10 @@
     <div class="slides">
       <section class="slide cover-slide" data-stage="dao" data-layout="cover" data-title="开场">
         <div class="seal-mark" aria-label="道法术器印章">
-          <span data-hero-letter="道" data-hero-role="cover">道</span>
-          <span data-hero-letter="法" data-hero-role="cover">法</span>
-          <span data-hero-letter="术" data-hero-role="cover">术</span>
-          <span data-hero-letter="器" data-hero-role="cover">器</span>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="道" data-hero-role="cover">道</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="法" data-hero-role="cover">法</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="术" data-hero-role="cover">术</span></div>
+          <div class="seal-cell"><span class="hero-glyph seal-glyph" data-hero-letter="器" data-hero-role="cover">器</span></div>
         </div>
         <div class="cover-copy">
           <p class="eyebrow">Codex Cookbook</p>
@@ -38,25 +38,25 @@
       <section class="slide overview-slide" data-stage="dao" data-layout="overview" data-title="阅读顺序">
         <div class="overview-list">
           <article class="overview-item">
-            <div class="badge" data-hero-letter="道" data-hero-role="overview">道</div>
+            <div class="badge"><span class="hero-glyph badge-glyph" data-hero-letter="道" data-hero-role="overview">道</span></div>
             <div>
               <p>建立和 Codex 协作时最重要的底层判断。</p>
             </div>
           </article>
           <article class="overview-item">
-            <div class="badge" data-hero-letter="法" data-hero-role="overview">法</div>
+            <div class="badge"><span class="hero-glyph badge-glyph" data-hero-letter="法" data-hero-role="overview">法</span></div>
             <div>
               <p>理解任务该如何组织，而不是直接堆提示词。</p>
             </div>
           </article>
           <article class="overview-item">
-            <div class="badge" data-hero-letter="术" data-hero-role="overview">术</div>
+            <div class="badge"><span class="hero-glyph badge-glyph" data-hero-letter="术" data-hero-role="overview">术</span></div>
             <div>
               <p>遇到具体局面时，去找对应打法。</p>
             </div>
           </article>
           <article class="overview-item">
-            <div class="badge" data-hero-letter="器" data-hero-role="overview">器</div>
+            <div class="badge"><span class="hero-glyph badge-glyph" data-hero-letter="器" data-hero-role="overview">器</span></div>
             <div>
               <p>需要马上复制时，直接用模板、反模式和通用补充句。</p>
             </div>
@@ -553,146 +553,519 @@
     };
 
     const heroOverlay = document.getElementById("heroOverlay");
-    const sealHeroLayer = document.getElementById("sealHeroLayer");
-    const sealHeroOverlays = Array.from(document.querySelectorAll(".seal-hero-overlay"));
-    const sealHeroLetters = ["道", "法", "术", "器"];
-    let sealHeroTimeoutId = null;
+    const heroBridgeLayer = document.getElementById("heroBridgeLayer");
+    const heroBridgeOverlays = Array.from(document.querySelectorAll(".hero-bridge-overlay"));
+    const heroLetters = ["道", "法", "术", "器"];
+    let activeHeroTransition = null;
 
-    function getSealHeroNode(slide, letter) {
+    function parseCssTimeToMs(value) {
+      const normalized = value.trim();
+      if (!normalized) {
+        return 0;
+      }
+      if (normalized.endsWith("ms")) {
+        return Number.parseFloat(normalized);
+      }
+      if (normalized.endsWith("s")) {
+        return Number.parseFloat(normalized) * 1000;
+      }
+      return Number.parseFloat(normalized) || 0;
+    }
+
+    function getRootCssTime(name, fallbackMs) {
+      const value = getComputedStyle(document.documentElement).getPropertyValue(name);
+      const parsed = parseCssTimeToMs(value);
+      return parsed || fallbackMs;
+    }
+
+    function getHeroBridgeMotionDuration() {
+      return getRootCssTime("--hero-bridge-duration", 620);
+    }
+
+    function getHeroBridgeLandingFadeDuration() {
+      return getRootCssTime("--hero-bridge-landing-fade-duration", 120);
+    }
+
+    function getHeroBridgeHandoffDelay() {
+      return getHeroBridgeMotionDuration();
+    }
+
+    function getStageHeroLetter(stage) {
+      return stageMeta[stage]?.label || null;
+    }
+
+    function getRolelessHeroNode(slide, letter) {
       return slide?.querySelector(`[data-hero-letter="${letter}"][data-hero-role]`) || null;
     }
 
-    function hideSealHeroOverlays() {
-      if (sealHeroTimeoutId) {
-        clearTimeout(sealHeroTimeoutId);
-        sealHeroTimeoutId = null;
+    function getRoleHeroNode(slide, role, letter) {
+      const resolvedLetter = letter || getStageHeroLetter(slide?.dataset.stage);
+      if (!resolvedLetter) {
+        return null;
       }
 
-      sealHeroLayer.classList.remove("is-active");
-      for (const overlay of sealHeroOverlays) {
+      return slide?.querySelector(`[data-hero-letter="${resolvedLetter}"][data-hero-role="${role}"]`) || null;
+    }
+
+    function isCoverOverviewBridge(fromLayout, toLayout) {
+      return (
+        (fromLayout === "cover" && toLayout === "overview") ||
+        (fromLayout === "overview" && toLayout === "cover")
+      );
+    }
+
+    function isOverviewChapterBridge(fromLayout, toLayout) {
+      return (
+        (fromLayout === "overview" && toLayout === "chapter") ||
+        (fromLayout === "chapter" && toLayout === "overview")
+      );
+    }
+
+    function getHeroToneForNode(node) {
+      const role = node?.dataset.heroRole;
+      if (node?.dataset.heroTone) {
+        return node.dataset.heroTone;
+      }
+      if (role === "cover") {
+        return "cover";
+      }
+      if (role === "overview") {
+        return "overview";
+      }
+      return "watermark";
+    }
+
+    function getRenderedHeroStyle(node) {
+      if (!node) {
+        return {
+          color: "",
+          filter: "",
+          fontFamily: "",
+          fontSize: "",
+          fontWeight: "",
+          lineHeight: "",
+          letterSpacing: "",
+          textTransform: ""
+        };
+      }
+
+      const computed = getComputedStyle(node);
+      const filter = computed.filter && computed.filter !== "none" ? computed.filter : "";
+      return {
+        color: computed.color,
+        filter,
+        fontFamily: computed.fontFamily,
+        fontSize: computed.fontSize,
+        fontWeight: computed.fontWeight,
+        lineHeight: computed.lineHeight,
+        letterSpacing: computed.letterSpacing,
+        textTransform: computed.textTransform
+      };
+    }
+
+    function hideHeroBridgeOverlays() {
+      heroBridgeLayer.classList.remove("is-active");
+      for (const overlay of heroBridgeOverlays) {
         overlay.classList.remove("is-visible");
+        overlay.replaceChildren();
+        overlay.dataset.tone = "";
+        overlay.style.opacity = "";
+        overlay.style.color = "";
+        overlay.style.filter = "";
+        overlay.style.left = "";
+        overlay.style.top = "";
+        overlay.style.width = "";
+        overlay.style.height = "";
+        overlay.style.transform = "";
+        overlay.style.transition = "";
+        overlay.style.fontSize = "";
+        overlay.style.lineHeight = "";
       }
     }
 
-    function playSealHeroTransition(fromSlide, toSlide) {
-      const pairs = sealHeroLetters
-        .map((letter) => {
-          const fromNode = getSealHeroNode(fromSlide, letter);
-          const toNode = getSealHeroNode(toSlide, letter);
+    function setHeroNodesHidden(nodes, hidden) {
+      for (const node of nodes) {
+        if (!node) {
+          continue;
+        }
 
-          if (!fromNode || !toNode) {
+        node.classList.toggle("is-hero-bridge-hidden", hidden);
+      }
+    }
+
+    function createHeroBridgeClone(node) {
+      const clone = node.cloneNode(true);
+      clone.classList.remove("is-hero-bridge-hidden");
+      clone.removeAttribute("data-hero-role");
+      clone.style.fontFamily = "inherit";
+      clone.style.fontSize = "inherit";
+      clone.style.fontWeight = "inherit";
+      clone.style.lineHeight = "inherit";
+      clone.style.letterSpacing = "inherit";
+      clone.style.textTransform = "inherit";
+      clone.style.color = "inherit";
+      clone.style.filter = "inherit";
+      clone.style.transform = "none";
+      clone.style.width = "auto";
+      clone.style.height = "auto";
+      clone.style.display = "inline-flex";
+      clone.setAttribute("aria-hidden", "true");
+
+      return clone;
+    }
+
+    function clearHeroTransitionTimer(timerId) {
+      if (timerId) {
+        clearTimeout(timerId);
+      }
+    }
+
+    function createHeroTransitionContext(spec) {
+      return {
+        spec,
+        cleanupNodes: [],
+        timers: new Set(),
+        cleanedUp: false,
+        setTimer(callback, delay) {
+          const timerId = window.setTimeout(() => {
+            this.timers.delete(timerId);
+            callback();
+          }, delay);
+          this.timers.add(timerId);
+          return timerId;
+        },
+        cleanup({ hideBridge = true, hideOverlay = false } = {}) {
+          if (this.cleanedUp) {
+            return;
+          }
+
+          this.cleanedUp = true;
+          for (const timerId of this.timers) {
+            clearHeroTransitionTimer(timerId);
+          }
+          this.timers.clear();
+          setHeroNodesHidden(this.cleanupNodes, false);
+          if (hideBridge) {
+            hideHeroBridgeOverlays();
+          }
+          if (hideOverlay) {
+            hideHeroOverlay({ instant: true });
+          }
+          if (activeHeroTransition === this) {
+            activeHeroTransition = null;
+          }
+        }
+      };
+    }
+
+    function cancelActiveHeroTransition(options = {}) {
+      if (activeHeroTransition) {
+        activeHeroTransition.cleanup(options);
+      } else {
+        if (options.hideBridge) {
+          hideHeroBridgeOverlays();
+        }
+        if (options.hideOverlay) {
+          hideHeroOverlay({ instant: true });
+        }
+      }
+    }
+
+    function fadeOutVisibleHeroBridgeOverlays(context, onComplete) {
+      const visibleOverlays = heroBridgeOverlays.filter((overlay) => overlay.classList.contains("is-visible"));
+      if (!visibleOverlays.length) {
+        onComplete?.();
+        return;
+      }
+      const heroBridgeMotionDuration = getHeroBridgeMotionDuration();
+      const heroBridgeLandingFadeDuration = getHeroBridgeLandingFadeDuration();
+
+      for (const overlay of visibleOverlays) {
+        overlay.style.transition = [
+          `left ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `top ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `width ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `height ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `font-size ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `line-height ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `letter-spacing ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `font-weight ${heroBridgeMotionDuration}ms var(--hero-bridge-easing)`,
+          `opacity ${heroBridgeLandingFadeDuration}ms ease`,
+          "color 320ms ease",
+          "filter 320ms ease"
+        ].join(", ");
+        overlay.style.opacity = "0";
+      }
+
+      context.setTimer(() => {
+        onComplete?.();
+      }, heroBridgeLandingFadeDuration);
+    }
+
+    function buildHeroTransitionSpec(event) {
+      const fromLayout = event.previousSlide?.dataset.layout;
+      const toLayout = event.currentSlide?.dataset.layout;
+
+      if (isCoverOverviewBridge(fromLayout, toLayout)) {
+        const items = heroLetters
+          .map((letter) => {
+            const fromNode = getRolelessHeroNode(event.previousSlide, letter);
+            const toNode = getRolelessHeroNode(event.currentSlide, letter);
+            if (!fromNode || !toNode) {
+              return null;
+            }
+
+            return { letter, fromNode, toNode };
+          })
+          .filter(Boolean);
+
+        if (!items.length) {
+          return null;
+        }
+
+        return {
+          type: "multi",
+          key: "cover-overview",
+          currentSlide: event.currentSlide,
+          syncStageBeforeRun: true,
+          updateOverlayBeforeRun: false,
+          items
+        };
+      }
+
+      if (isOverviewChapterBridge(fromLayout, toLayout)) {
+        const letter = getStageHeroLetter(
+          event.currentSlide?.dataset.layout === "chapter"
+            ? event.currentSlide?.dataset.stage
+            : event.previousSlide?.dataset.stage
+        );
+        if (!letter) {
+          return null;
+        }
+
+        const fromNode = fromLayout === "overview"
+          ? getRoleHeroNode(event.previousSlide, "overview", letter)
+          : getRoleHeroNode(event.previousSlide, "chapter", letter);
+        const toNode = toLayout === "chapter"
+          ? getRoleHeroNode(event.currentSlide, "chapter", letter)
+          : getRoleHeroNode(event.currentSlide, "overview", letter);
+
+        if (!fromNode || !toNode) {
+          return null;
+        }
+
+        return {
+          type: "single",
+          key: "overview-chapter",
+          currentSlide: event.currentSlide,
+          syncStageBeforeRun: false,
+          updateOverlayBeforeRun: false,
+          items: [{ letter, fromNode, toNode }]
+        };
+      }
+
+      return null;
+    }
+
+    function collectHeroTransitionItems(spec) {
+      return spec.items
+        .map((item) => {
+          const fromRect = item.fromNode.getBoundingClientRect();
+          const toRect = item.toNode.getBoundingClientRect();
+          if (!fromRect.width || !fromRect.height || !toRect.width || !toRect.height) {
             return null;
           }
 
           return {
-            letter,
-            fromRect: fromNode.getBoundingClientRect(),
-            toRect: toNode.getBoundingClientRect()
+            ...item,
+            sourceVisual: item.fromNode,
+            sourceComputed: getRenderedHeroStyle(item.fromNode),
+            targetComputed: getRenderedHeroStyle(item.toNode),
+            fromRect,
+            toRect
           };
         })
         .filter(Boolean);
+    }
 
-      if (!pairs.length) {
-        hideSealHeroOverlays();
-        return;
-      }
+    function runMultiHeroTransition(spec, items) {
+      const context = createHeroTransitionContext(spec);
+      const bridgeClones = new Map(
+        items.map((item) => [item.letter, createHeroBridgeClone(item.sourceVisual)])
+      );
+      const sourceNodes = items.map((item) => item.fromNode);
+      const targetNodes = items.map((item) => item.toNode);
+      context.cleanupNodes = [...sourceNodes, ...targetNodes];
 
-      sealHeroLayer.classList.add("is-active");
+      setHeroNodesHidden(context.cleanupNodes, true);
+      hideHeroOverlay({ instant: true });
+      hideHeroBridgeOverlays();
+      activeHeroTransition = context;
+      heroBridgeLayer.classList.add("is-active");
 
-      for (const overlay of sealHeroOverlays) {
-        const pair = pairs.find((item) => item.letter === overlay.dataset.heroLetter);
-        if (!pair) {
+      for (const overlay of heroBridgeOverlays) {
+        const item = items.find((candidate) => candidate.letter === overlay.dataset.heroLetter);
+        if (!item) {
           overlay.classList.remove("is-visible");
           continue;
         }
 
-        overlay.textContent = pair.letter;
+        overlay.replaceChildren(bridgeClones.get(item.letter));
         overlay.classList.add("is-visible");
-        overlay.style.left = `${pair.fromRect.left}px`;
-        overlay.style.top = `${pair.fromRect.top}px`;
-        overlay.style.width = `${pair.fromRect.width}px`;
-        overlay.style.height = `${pair.fromRect.height}px`;
-        overlay.style.fontSize = getComputedStyle(getSealHeroNode(fromSlide, pair.letter)).fontSize;
-        overlay.style.lineHeight = getComputedStyle(getSealHeroNode(fromSlide, pair.letter)).lineHeight;
+        overlay.style.opacity = "1";
+        overlay.style.left = `${item.fromRect.left}px`;
+        overlay.style.top = `${item.fromRect.top}px`;
+        overlay.style.width = `${item.fromRect.width}px`;
+        overlay.style.height = `${item.fromRect.height}px`;
+        overlay.style.fontFamily = item.sourceComputed.fontFamily;
+        overlay.style.fontSize = item.sourceComputed.fontSize;
+        overlay.style.fontWeight = item.sourceComputed.fontWeight;
+        overlay.style.lineHeight = item.sourceComputed.lineHeight;
+        overlay.style.letterSpacing = item.sourceComputed.letterSpacing;
+        overlay.style.textTransform = item.sourceComputed.textTransform;
+        overlay.style.color = item.sourceComputed.color;
+        overlay.style.filter = item.sourceComputed.filter && item.sourceComputed.filter !== "none" ? item.sourceComputed.filter : "";
       }
 
+      void heroBridgeLayer.offsetWidth;
+
       requestAnimationFrame(() => {
-        for (const overlay of sealHeroOverlays) {
-          const pair = pairs.find((item) => item.letter === overlay.dataset.heroLetter);
-          if (!pair) {
+        if (activeHeroTransition !== context) {
+          return;
+        }
+
+        for (const overlay of heroBridgeOverlays) {
+          const item = items.find((candidate) => candidate.letter === overlay.dataset.heroLetter);
+          if (!item) {
             continue;
           }
 
-          overlay.style.left = `${pair.toRect.left}px`;
-          overlay.style.top = `${pair.toRect.top}px`;
-          overlay.style.width = `${pair.toRect.width}px`;
-          overlay.style.height = `${pair.toRect.height}px`;
-          overlay.style.fontSize = getComputedStyle(getSealHeroNode(toSlide, pair.letter)).fontSize;
-          overlay.style.lineHeight = getComputedStyle(getSealHeroNode(toSlide, pair.letter)).lineHeight;
+          overlay.style.left = `${item.toRect.left}px`;
+          overlay.style.top = `${item.toRect.top}px`;
+          overlay.style.width = `${item.toRect.width}px`;
+          overlay.style.height = `${item.toRect.height}px`;
+          overlay.style.fontFamily = item.targetComputed.fontFamily;
+          overlay.style.fontSize = item.targetComputed.fontSize;
+          overlay.style.fontWeight = item.targetComputed.fontWeight;
+          overlay.style.lineHeight = item.targetComputed.lineHeight;
+          overlay.style.letterSpacing = item.targetComputed.letterSpacing;
+          overlay.style.textTransform = item.targetComputed.textTransform;
+          overlay.style.color = item.targetComputed.color;
+          overlay.style.filter = item.targetComputed.filter && item.targetComputed.filter !== "none" ? item.targetComputed.filter : "";
         }
       });
 
-      sealHeroTimeoutId = window.setTimeout(() => {
-        hideSealHeroOverlays();
-      }, 760);
+      context.setTimer(() => {
+        setHeroNodesHidden(targetNodes, false);
+        fadeOutVisibleHeroBridgeOverlays(context, () => {
+          if (activeHeroTransition !== context) {
+            return;
+          }
+
+          hideHeroBridgeOverlays();
+          setHeroNodesHidden(sourceNodes, false);
+          activeHeroTransition = null;
+          context.cleanupNodes = [];
+          context.cleanedUp = true;
+        });
+      }, getHeroBridgeHandoffDelay());
     }
 
-    function playSingleHeroBridge(fromNode, toNode, letter) {
-      if (!fromNode || !toNode || !letter) {
-        hideSealHeroOverlays();
-        return;
-      }
+    function runSingleHeroTransition(spec, items) {
+      const [item] = items;
+      const context = createHeroTransitionContext(spec);
+      context.cleanupNodes = [item.fromNode, item.toNode];
 
-      const overlay = sealHeroOverlays.find((item) => item.dataset.heroLetter === letter);
-      if (!overlay) {
-        hideSealHeroOverlays();
-        return;
-      }
+      setHeroNodesHidden(context.cleanupNodes, true);
+      hideHeroBridgeOverlays();
+      activeHeroTransition = context;
 
-      const fromRect = fromNode.getBoundingClientRect();
-      const toRect = toNode.getBoundingClientRect();
-
-      if (!fromRect.width || !fromRect.height || !toRect.width || !toRect.height) {
-        hideSealHeroOverlays();
-        return;
-      }
-
-      if (sealHeroTimeoutId) {
-        clearTimeout(sealHeroTimeoutId);
-      }
-
-      hideHeroOverlay();
-      sealHeroLayer.classList.add("is-active");
-
-      for (const item of sealHeroOverlays) {
-        item.classList.remove("is-visible");
-      }
-
-      overlay.textContent = letter;
-      overlay.classList.add("is-visible");
-      overlay.style.left = `${fromRect.left}px`;
-      overlay.style.top = `${fromRect.top}px`;
-      overlay.style.width = `${fromRect.width}px`;
-      overlay.style.height = `${fromRect.height}px`;
-      overlay.style.fontSize = getComputedStyle(fromNode).fontSize;
-      overlay.style.lineHeight = getComputedStyle(fromNode).lineHeight;
+      heroOverlay.textContent = item.letter;
+      heroOverlay.dataset.tone = getHeroToneForNode(item.fromNode);
+      heroOverlay.style.left = `${item.fromRect.left}px`;
+      heroOverlay.style.top = `${item.fromRect.top}px`;
+      heroOverlay.style.width = `${item.fromRect.width}px`;
+      heroOverlay.style.height = `${item.fromRect.height}px`;
+      heroOverlay.style.fontSize = item.sourceComputed.fontSize;
+      heroOverlay.style.lineHeight = item.sourceComputed.lineHeight;
+      heroOverlay.style.opacity = "1";
+      heroOverlay.style.transform = "translate(0, 0) scale(1)";
 
       requestAnimationFrame(() => {
-        overlay.style.left = `${toRect.left}px`;
-        overlay.style.top = `${toRect.top}px`;
-        overlay.style.width = `${toRect.width}px`;
-        overlay.style.height = `${toRect.height}px`;
-        overlay.style.fontSize = getComputedStyle(toNode).fontSize;
-        overlay.style.lineHeight = getComputedStyle(toNode).lineHeight;
+        if (activeHeroTransition !== context) {
+          return;
+        }
+
+        heroOverlay.dataset.tone = getHeroToneForNode(item.toNode);
+        heroOverlay.style.left = `${item.toRect.left}px`;
+        heroOverlay.style.top = `${item.toRect.top}px`;
+        heroOverlay.style.width = `${item.toRect.width}px`;
+        heroOverlay.style.height = `${item.toRect.height}px`;
+        heroOverlay.style.fontSize = item.targetComputed.fontSize;
+        heroOverlay.style.lineHeight = item.targetComputed.lineHeight;
       });
 
-      sealHeroTimeoutId = window.setTimeout(() => {
-        hideSealHeroOverlays();
+      context.setTimer(() => {
+        if (activeHeroTransition !== context) {
+          return;
+        }
+
+        context.cleanup({ hideBridge: true, hideOverlay: false });
+        const targetRole = item.toNode.dataset.heroRole || "";
+        if (targetRole === "overview" || targetRole === "cover") {
+          hideHeroOverlay({ instant: true });
+          return;
+        }
+
         syncStage();
-      }, 760);
+      }, getHeroBridgeHandoffDelay());
     }
 
-    function hideHeroOverlay() {
+    function runHeroTransition(spec) {
+      const items = collectHeroTransitionItems(spec);
+      if (!items.length) {
+        cancelActiveHeroTransition({ hideBridge: true, hideOverlay: true });
+        return false;
+      }
+
+      cancelActiveHeroTransition({ hideBridge: true, hideOverlay: false });
+      if (spec.syncStageBeforeRun) {
+        syncStage(spec.currentSlide, { updateOverlay: spec.updateOverlayBeforeRun });
+      }
+
+      if (spec.type === "multi") {
+        runMultiHeroTransition(spec, items);
+        return true;
+      }
+
+      if (spec.type === "single") {
+        runSingleHeroTransition(spec, items);
+        return true;
+      }
+
+      return false;
+    }
+
+    function hideHeroOverlay(options = {}) {
+      const { instant = false } = options;
+
+      if (instant) {
+        heroOverlay.style.transition = "none";
+        heroOverlay.style.opacity = "0";
+        heroOverlay.style.transform = "translate(0, 0) scale(1)";
+        heroOverlay.textContent = "";
+        heroOverlay.dataset.tone = "";
+        heroOverlay.style.left = "";
+        heroOverlay.style.top = "";
+        heroOverlay.style.width = "";
+        heroOverlay.style.height = "";
+        heroOverlay.style.fontSize = "";
+        heroOverlay.style.lineHeight = "";
+        void heroOverlay.offsetWidth;
+        heroOverlay.style.transition = "";
+        return;
+      }
+
       heroOverlay.style.opacity = "0";
       heroOverlay.style.transform = "translate(0, 0) scale(0.7)";
       heroOverlay.textContent = "";
@@ -724,47 +1097,26 @@
       heroOverlay.style.transform = "translate(0, 0) scale(1)";
     }
 
-    function syncStage() {
-      const slide = Reveal.getCurrentSlide();
+    function syncStage(slide = Reveal.getCurrentSlide(), options = {}) {
+      const { updateOverlay = true } = options;
       const stage = slide?.dataset.stage || "dao";
       const layout = slide?.dataset.layout || "content";
 
       document.body.dataset.stage = stage;
       document.body.dataset.layout = layout;
-      updateHeroOverlay(slide);
+      if (updateOverlay) {
+        updateHeroOverlay(slide);
+      }
     }
 
     function maybePlayHeroBridge(event) {
-      const fromLayout = event.previousSlide?.dataset.layout;
-      const toLayout = event.currentSlide?.dataset.layout;
-      const isCoverToOverview = fromLayout === "cover" && toLayout === "overview";
-      const isOverviewToCover = fromLayout === "overview" && toLayout === "cover";
-      const isOverviewToChapter = fromLayout === "overview" && toLayout === "chapter";
-      const isChapterToOverview = fromLayout === "chapter" && toLayout === "overview";
-
-      if (isCoverToOverview || isOverviewToCover) {
-        playSealHeroTransition(event.previousSlide, event.currentSlide);
-        return;
+      const spec = buildHeroTransitionSpec(event);
+      if (!spec) {
+        cancelActiveHeroTransition({ hideBridge: true, hideOverlay: false });
+        return false;
       }
 
-      if (isOverviewToChapter || isChapterToOverview) {
-        const letter = event.currentSlide?.dataset.stage === "dao"
-          ? "道"
-          : event.previousSlide?.dataset.stage === "dao"
-            ? "道"
-            : null;
-        const fromNode = isOverviewToChapter
-          ? event.previousSlide?.querySelector('[data-hero-letter="道"][data-hero-role="overview"]')
-          : event.previousSlide?.querySelector('[data-hero-letter="道"][data-hero-role="chapter"]');
-        const toNode = isOverviewToChapter
-          ? event.currentSlide?.querySelector('[data-hero-letter="道"][data-hero-role="chapter"]')
-          : event.currentSlide?.querySelector('[data-hero-letter="道"][data-hero-role="overview"]');
-
-        playSingleHeroBridge(fromNode, toNode, letter);
-        return;
-      }
-
-      hideSealHeroOverlays();
+      return runHeroTransition(spec);
     }
 
     const mobileViewport = window.matchMedia("(max-width: 680px)");
@@ -794,6 +1146,10 @@
         return;
       }
 
+      if (activeHeroTransition) {
+        cancelActiveHeroTransition({ hideBridge: true, hideOverlay: true });
+      }
+
       Reveal.configure(getRevealLayoutConfig());
       Reveal.layout();
       syncStage();
@@ -813,8 +1169,11 @@
 
     Reveal.on("ready", syncRevealLayout);
     Reveal.on("slidechanged", (event) => {
+      if (maybePlayHeroBridge(event)) {
+        return;
+      }
+
       syncStage();
-      maybePlayHeroBridge(event);
     });
   </script>
 </body>

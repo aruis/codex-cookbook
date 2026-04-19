@@ -10,6 +10,13 @@
   --frame: rgba(160, 118, 91, 0.18);
   --panel: rgba(255, 251, 245, 0.5);
   --shadow: 0 20px 60px rgba(58, 37, 21, 0.08);
+  --hero-overlay-duration: 480ms;
+  --hero-overlay-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --hero-overlay-opacity-duration: 280ms;
+  --hero-bridge-duration: 620ms;
+  --hero-bridge-easing: cubic-bezier(0.22, 1, 0.36, 1);
+  --hero-bridge-opacity-duration: 220ms;
+  --hero-bridge-landing-fade-duration: 120ms;
 }
 
 *,
@@ -165,13 +172,13 @@ body::after {
   opacity: 0;
   pointer-events: none;
   transition:
-    left 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    top 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    width 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    height 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    font-size 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    line-height 480ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 280ms ease,
+    left var(--hero-overlay-duration) var(--hero-overlay-easing),
+    top var(--hero-overlay-duration) var(--hero-overlay-easing),
+    width var(--hero-overlay-duration) var(--hero-overlay-easing),
+    height var(--hero-overlay-duration) var(--hero-overlay-easing),
+    font-size var(--hero-overlay-duration) var(--hero-overlay-easing),
+    line-height var(--hero-overlay-duration) var(--hero-overlay-easing),
+    opacity var(--hero-overlay-opacity-duration) ease,
     color 320ms ease,
     filter 320ms ease;
 }
@@ -181,44 +188,68 @@ body::after {
   filter: drop-shadow(0 16px 36px rgba(80, 40, 20, 0.08));
 }
 
-.seal-hero-layer {
+.hero-overlay[data-tone="cover"] {
+  color: rgba(168, 112, 90, 0.82);
+  filter: drop-shadow(0 10px 24px rgba(117, 69, 43, 0.12));
+}
+
+.hero-bridge-layer {
   position: fixed;
   inset: 0;
   z-index: 6;
   pointer-events: none;
   opacity: 0;
+  visibility: hidden;
 }
 
-.seal-hero-layer.is-active {
+.hero-bridge-layer.is-active {
   opacity: 1;
+  visibility: visible;
 }
 
-.seal-hero-overlay {
+.hero-bridge-overlay {
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
-  color: rgba(168, 112, 90, 0.92);
-  text-shadow:
-    0 10px 24px rgba(117, 69, 43, 0.16),
-    0 0 24px rgba(255, 247, 238, 0.72);
+  color: rgba(155, 107, 85, 0.13);
   opacity: 0;
-  transform: scale(0.96);
   transition:
-    left 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    top 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    height 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    font-size 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    line-height 620ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 220ms ease,
-    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    left var(--hero-bridge-duration) var(--hero-bridge-easing),
+    top var(--hero-bridge-duration) var(--hero-bridge-easing),
+    width var(--hero-bridge-duration) var(--hero-bridge-easing),
+    height var(--hero-bridge-duration) var(--hero-bridge-easing),
+    font-size var(--hero-bridge-duration) var(--hero-bridge-easing),
+    line-height var(--hero-bridge-duration) var(--hero-bridge-easing),
+    letter-spacing var(--hero-bridge-duration) var(--hero-bridge-easing),
+    font-weight var(--hero-bridge-duration) var(--hero-bridge-easing),
+    opacity var(--hero-bridge-opacity-duration) ease,
+    color 320ms ease,
+    filter 320ms ease;
 }
 
-.seal-hero-overlay.is-visible {
+.hero-bridge-overlay.is-visible {
   opacity: 1;
-  transform: scale(1);
+}
+
+.hero-bridge-overlay[data-tone="intro"] {
+  color: rgba(155, 107, 85, 0.3);
+  filter: drop-shadow(0 16px 36px rgba(80, 40, 20, 0.08));
+}
+
+.hero-bridge-overlay[data-tone="cover"] {
+  color: rgba(168, 112, 90, 0.82);
+  filter: drop-shadow(0 10px 24px rgba(117, 69, 43, 0.12));
+}
+
+.hero-bridge-overlay[data-tone="overview"] {
+  color: rgba(155, 107, 85, 0.28);
+}
+
+.hero-bridge-overlay[data-tone="watermark"],
+.hero-bridge-overlay[data-tone="closing"] {
+  color: rgba(155, 107, 85, 0.12);
 }
 
 .hero-overlay[data-tone="overview"] {
@@ -235,6 +266,19 @@ body::after {
   color: transparent;
   user-select: none;
   pointer-events: none;
+}
+
+.hero-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+}
+
+.is-hero-bridge-hidden {
+  color: transparent !important;
 }
 
 .hero-target-intro {
@@ -347,23 +391,25 @@ body::after {
   border: 1px solid rgba(181, 129, 110, 0.16);
 }
 
-.seal-mark span {
+.seal-cell {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.seal-glyph {
   font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
   font-size: clamp(104px, 13vw, 148.2px);
-  line-height: 1;
   color: rgba(176, 121, 101, 0.84);
 }
 
-.seal-mark span:nth-child(1),
-.seal-mark span:nth-child(3) {
+.seal-cell:nth-child(1),
+.seal-cell:nth-child(3) {
   transform: translateX(6%);
 }
 
-.seal-mark span:nth-child(2),
-.seal-mark span:nth-child(4) {
+.seal-cell:nth-child(2),
+.seal-cell:nth-child(4) {
   transform: translateX(-6%);
 }
 
@@ -423,6 +469,12 @@ body::after {
   font-size: 52px;
   color: rgba(158, 104, 81, 0.82);
   background: rgba(255, 253, 249, 0.46);
+}
+
+.badge-glyph {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 .overview-item h3 {
@@ -707,7 +759,7 @@ body::after {
     display: none;
   }
 
-  .seal-hero-layer {
+  .hero-bridge-layer {
     display: none;
   }
 
