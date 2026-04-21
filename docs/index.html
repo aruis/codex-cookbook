@@ -393,6 +393,19 @@
         </div>
       </section>
 
+      <section class="slide lecture-slide" data-stage="shu" data-layout="content" data-title="13. 先挂账再推进">
+        <div class="hero-target hero-target-watermark" data-hero-letter="术" data-hero-tone="watermark"></div>
+        <div class="content-shell">
+          <p class="eyebrow">术 · 13</p>
+          <h2>主线推进中发现技术债：先挂账，不轻易打断</h2>
+          <div class="content-grid">
+            <article class="content-block list-block"><h3>适用</h3><ul><li>Codex 推进主任务时，顺手暴露出存量代码的结构问题</li><li>你在旁路阅读它正在改的代码时，发现技术债或设计隐患</li><li>你不希望它因为顺手优化而偏离当前主线</li><li>你又不希望这个观察在当前任务结束后被遗忘</li></ul></article>
+            <article class="content-block"><h3>模板</h3><p>如果在推进主任务过程中发现技术债，先不要立刻切进去治理。先判断它是否阻塞当前任务的正确性、稳定性或最小可交付结果：</p><p>- 如果阻塞，就说明为什么必须现在处理，再处理。<br>- 如果不阻塞，就先记录到技术债文档，写清位置、问题表现、当前不处理的原因、风险、后续建议和建议处理时机，然后继续推进主任务。</p><p>无论这个问题是你发现的，还是我在旁路阅读中发现的，都先按这个规则处理；不要因为顺手优化而偏离当前主线。</p></article>
+            <article class="content-block list-block"><h3>误用边界</h3><ul><li>不要把所有问题都挂账；真正会阻塞当前交付的问题，应该现在处理。</li><li>不要把技术债文档写成情绪记录；如果后续不可执行，等于没记。</li><li>不要只写“以后再说”；至少要写清风险和建议处理时机。</li><li>如果当前任务正在沿着明显错误的结构继续扩展，就不该继续放任主线前进。</li></ul></article>
+          </div>
+        </div>
+      </section>
+
       <section class="slide chapter-slide" data-stage="qi" data-layout="chapter" data-title="器">
         <div class="hero-target hero-target-intro" data-hero-letter="器" data-hero-tone="intro" data-hero-role="chapter"></div>
         <div class="chapter-copy">
@@ -487,6 +500,21 @@
             <p>这次不考虑兼容过渡，直接按目标状态修改；不要额外保留兼容层、桥接逻辑或过渡方案。</p>
             <p>如果有需要我确认的问题，请只提最关键的 1 到 3 个，并按“问题、选项、利弊、推荐”格式来问。</p>
             <p>先列出你的关键假设和缺失信息；能自行拍板的直接继续，不能拍板的最后集中列出。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide lecture-slide" data-stage="qi" data-layout="content" data-title="技术债挂账型">
+        <div class="hero-target hero-target-watermark" data-hero-letter="器" data-hero-tone="watermark"></div>
+        <div class="content-shell recipe-shell">
+          <p class="eyebrow">器 · 模板</p>
+          <h2>技术债挂账型：先挂账，再继续主线。</h2>
+          <div class="text-panel recipe-panel">
+            <p><strong>目标：</strong>推进【当前主任务】，不要因为顺手发现的技术债偏离主线。</p>
+            <p><strong>模式：</strong>默认继续主任务；只有在技术债已经阻塞当前正确性、稳定性或最小可交付结果时，才中断处理。</p>
+            <p><strong>约束：</strong>无论技术债是你自己发现的，还是我在旁路阅读中发现的，都先判断是否必须现在处理；不必须现在处理的，先登记，不直接扩展治理。</p>
+            <p><strong>输出：</strong>如果需要挂账，就记录到【技术债文档 / 债务清单】，写清位置、问题表现、当前不处理的原因、风险、后续建议和建议处理时机，然后继续主任务。</p>
+            <p><strong>验证：</strong>主任务结束后，补一次债务清单回看，确认哪些要开单独治理。</p>
           </div>
         </div>
       </section>
