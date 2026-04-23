@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师谋士"
+  short_description: "System and plan analysis for 军师"
+  default_prompt: "Use $junshi-moushi when the delegated role is a 谋士 who should analyze the implementation path, structural gap, or plan quality for 军师."

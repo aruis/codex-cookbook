@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师武将"
+  short_description: "Bounded execution and validation for 军师"
+  default_prompt: "Use $junshi-wujiang when the delegated role is a 武将 who should execute or verify technical facts within an approved boundary for 军师."

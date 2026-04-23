@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师文臣"
+  short_description: "Review and convergence checks for 军师"
+  default_prompt: "Use $junshi-wenchen when the delegated role is a 文臣 who should review changes, judge submit-readiness, and help 军师 converge."

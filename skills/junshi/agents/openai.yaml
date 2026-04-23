@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师"
+  short_description: "Explicitly activated lead-agent orchestration"
+  default_prompt: "Use $junshi only after explicit user activation such as 召唤军师, continue using it for later turns in the same thread until exit or explicit fallback, stay lightweight when the task is not really a system-level or cross-module problem, and coordinate the right pool only when needed."
