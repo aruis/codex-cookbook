@@ -1,0 +1,4 @@
+interface:
+  display_name: "军师法正"
+  short_description: "Single-seat review and commit handling for 军师"
+  default_prompt: "Use $junshi-fazheng when 法正 is explicitly delegated by 军师 to review work, run tests, judge submit-readiness, or handle commit-side closure."

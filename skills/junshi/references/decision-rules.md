@@ -9,11 +9,9 @@ Use this file when `军师` needs the heavier decision details without bloating 
 - `Analysis Escalation`
 - `Chain-Depth Checkpoint`
 - `Technical Debt And Temporary Fixes`
-- `武将 Execution Autonomy`
 - `Parallelism Rules`
-- `Planning Changes`
-- `Stop Rule For Over-Abstraction`
 - `Review And Commit`
+- `Stop Rule For Over-Abstraction`
 
 ## Time Scale And Mode
 
@@ -22,8 +20,6 @@ Distinguish among:
 - long-term construction
 - staged transition
 - short-term stop-bleeding
-
-Do not apply the same standard to all three.
 
 Choose mode by situation:
 
@@ -37,6 +33,8 @@ Do not keep planning mode always on. Return to execution once the path is stable
 ## When To Call 谋士池
 
 Default: `军师` thinks first. `谋士池` is for high-risk judgment, not routine pre-analysis.
+
+`贾诩 / 庞统 / 郭嘉` may be used in parallel for analysis work when their reading or write scopes do not conflict.
 
 Bring in `谋士池` when the task touches areas such as:
 
@@ -52,8 +50,6 @@ Default analysis output should answer:
 - where the structural gap is
 - whether deeper analysis is necessary before execution
 
-Do not expand into detailed planning unless the task has clearly crossed into higher-risk territory.
-
 ## Analysis Escalation
 
 Default limit:
@@ -66,7 +62,7 @@ After that, either move into execution or state the blocking reason explicitly.
 Stop analyzing and move to execution when:
 
 - clear execution boundaries can already be defined
-- risk still exists, but implementation plus feedback is now more useful than more speculation
+- implementation plus feedback is now more useful than more speculation
 
 ## Chain-Depth Checkpoint
 
@@ -86,7 +82,7 @@ Then decide whether the best next move is:
 - switch direction
 - pause here
 
-Do not run this checkpoint mechanically on every step. Use it when a line of work has become noticeably long or its payoff has become uncertain.
+Do not run this checkpoint mechanically on every step.
 
 ## Technical Debt And Temporary Fixes
 
@@ -102,58 +98,24 @@ When using a temporary workaround or fallback:
 - state why that path is not being taken now
 - state the risk, limitation, and intended recovery path
 
-## 武将 Execution Autonomy
-
-Planning constrains direction, not every implementation detail.
-
-`武将` may adjust details locally as long as the change does not silently alter:
-
-- the task goal
-- the approved capability boundary
-- the mid/long-term direction
-
-Allowed local adjustments include:
-
-- changing exact code landing points
-- adjusting class or method organization
-- making small implementation refinements needed to complete the loop
-- correcting detail mistakes in the written plan
-
-`武将` must escalate when a change starts to affect:
-
-- new core abstractions
-- new high-risk areas not already in scope
-- clearly expanded write scope
-- the original task split or parallelization assumptions
-- a core assumption in the plan
-
 ## Parallelism Rules
 
-Default to one `武将`.
+- `谋士池`: may parallelize when task boundaries and write scopes do not conflict
+- `武将池`: default to one person; only parallelize when task boundaries and write scopes are clearly non-conflicting
+- `法正`: single-seat; do not parallelize
 
-Parallelize only when both are true:
+Collapse back to serial convergence when supposedly independent slices begin touching the same core files, abstractions, or shared write targets.
 
-- the task can be separated by clear system or responsibility boundaries
-- write scopes are basically non-overlapping
+When delegated work can proceed asynchronously, do not stall the thread only to wait for non-blocking results.
 
-Do not parallelize only because the task is large.
+If `法正` lacks technical facts needed for review, test, or commit-side handling, supplement with a `武将` validation pass instead of opening another `法正` line.
 
-Collapse back to serial convergence if:
+## Review And Commit
 
-- multiple `武将` begin touching the same core files or abstraction layer
-- supposedly independent slices prove strongly coupled in execution
-
-## Planning Changes
-
-Separate `local adjustment` from `planning change`.
-
-- `武将池` may adjust execution details locally
-- `武将池` may report planning drift
-- `文臣池` may record and organize drift
-- `谋士池` updates planning content when the plan itself must change
-- `军师` decides whether to accept planning changes
-
-No pool other than `军师` should silently redefine task direction.
+- `法正` should handle review, test closure, submit-readiness, and commit-side handling when explicitly assigned
+- `军师` should not personally do the substantive review unless the diff is trivial or the user explicitly wants a personal review
+- acceptance criteria should be explicit
+- verification should prove the problem is really solved, not only bypassed or coincidentally passing
 
 ## Stop Rule For Over-Abstraction
 
@@ -163,19 +125,3 @@ Stop further abstraction when:
 - the new abstraction still has no clear reuse scenario
 
 At that point, shift from digging to convergence.
-
-## Review And Commit
-
-For review-like requests:
-
-- submit-readiness, acceptance, and review of current changes -> `文臣池` first
-- requirement, plan, and implementation-path review -> `谋士池`
-- implementation-side technical validation, path walkthrough, and local feasibility checks -> `武将池` when technical facts need to be verified
-
-`军师` should not personally read through the full change set as the main reviewer unless the diff is trivial or the user explicitly wants a personal review from `军师`.
-
-Validation quality rules:
-
-- acceptance criteria should be explicit, not empty wording
-- verification should prove the problem is really solved, not only bypassed or coincidentally passing
-- do not expand the main scope just to make validation look more complete

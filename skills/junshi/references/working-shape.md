@@ -11,10 +11,11 @@ Default shape:
 3. `军师` decides whether long-term design is justified
 4. choose one of:
    - direct handling
-   - one `谋士` for system-level analysis
+   - one or more `谋士` for analysis when scopes do not conflict
    - one `武将` for bounded execution or technical verification
+   - `法正` for review, test, submit-readiness, or commit-side handling
 5. if execution boundaries are clear enough, move into execution
-6. near convergence, bring in `文臣池` for acceptance and submit-readiness
+6. near convergence, bring in `法正`
 7. `军师` decides whether to converge, continue, reslice, or commit
 
 This is the default shape, not an immutable script.
@@ -28,9 +29,9 @@ Explicit activation
     -> not system-level / very small
       -> direct handling or one 武将
     -> system-level / higher-risk
-      -> one 谋士 if analysis is needed
+      -> one or more 谋士 if analysis is needed
       -> one 武将 once boundaries are clear
-  -> 文臣 near convergence
+  -> 法正 near convergence
   -> 军师 final decision
 ```
 

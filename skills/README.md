@@ -7,16 +7,16 @@ This repository currently contains one coordinated skill system centered on `jun
 - [`junshi/`](./junshi): lead-agent orchestration skill
 - [`junshi-moushi/`](./junshi-moushi): delegated capability and plan analysis role
 - [`junshi-wujiang/`](./junshi-wujiang): delegated bounded execution and technical validation role
-- [`junshi-wenchen/`](./junshi-wenchen): delegated review, acceptance, and convergence role
+- [`junshi-fazheng/`](./junshi-fazheng): single-seat review, test, and commit-handling role
 
 ## How The Pieces Fit
 
 `junshi` is the lead role. It decides whether to:
 
 - handle a task directly
-- send one `谋士` for capability-level analysis
+- send one or more `谋士` for analysis when scopes do not conflict
 - send one `武将` for execution or technical fact-finding
-- bring in one `文臣` near convergence for acceptance and submit-readiness
+- bring in `法正` for review, test, submit-readiness, or commit-side handling
 
 The child skills are not standalone orchestration systems. They are role contracts used under `junshi`.
 

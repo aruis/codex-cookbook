@@ -65,7 +65,7 @@ Owners:
 
 - initial draft: `谋士池`
 - active execution updates: assigned `武将`
-- convergence cleanup: `文臣池`
+- convergence cleanup: `法正`
 
 ## 执行反馈 / 验收记录
 
@@ -101,7 +101,7 @@ Owners:
 Owners:
 
 - execution feedback: `武将池`
-- acceptance cleanup and submit-readiness: `文臣池`
+- acceptance cleanup, test closure, and submit-readiness: `法正`
 
 ## Failure Return Shape
 
